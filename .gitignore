@@ -1,6 +1,7 @@
 #Mac Specific
 .DS_STORE
-/env
+env/
 
 #Python Specific
 *.pyc
+__pycache__/
