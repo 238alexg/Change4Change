@@ -18,12 +18,11 @@
     p {font-size: 16px;}
     .margin {margin-bottom: 45px;}
     .bg-1 { 
-        background-color: #1abc9c; /* Green */
+        background-color: rgba(26, 188, 156, 0.9); /* Green */
         color: #ffffff;
-        opacity: 0.7;
     }
     .img-1 {
-      background: url("../img/city.jpg");
+      background: url("../static/img/city.jpg");
       position: relative;
     }
     .bg-2 { 
@@ -54,6 +53,14 @@
     .navbar-nav  li a:hover {
         color: #1abc9c !important;
     }
+    .btn-xlarge {
+       padding: 18px 28px;
+       font-size: 22px;
+       line-height: normal;
+       -webkit-border-radius: 8px;
+          -moz-border-radius: 8px;
+               border-radius: 8px;
+    }
   </style>
 </head>
 <body>
@@ -80,11 +87,13 @@
 </nav>
 
 <!-- First Container -->
-<div class="container-fluid bg-1 text-center">
-  <h3 class="margin">Donate</h3>
-  <img src="../static/img/CoE_logo_2clr.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Image" width="350" height="350">
-  <button type="button" class="btn btn-info">Info</button>
-  <h3>All proceeds goes to St. Vincent DePaul for Homeless Services</h3>
+<div class="img-1">
+  <div class="container-fluid bg-1 text-center">
+    <h3 class="margin">Donate</h3>
+    <img src="../static/img/CoE_logo_2clr.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Image" width="350" height="350">
+    <button type="button" class="btn btn-info">Info</button>
+    <h3>All proceeds goes to St. Vincent DePaul for Homeless Services</h3>
+  </div>
 </div>
 
 <!-- Second Container -->
