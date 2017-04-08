@@ -66,6 +66,10 @@ function createWindow(e) {
     //set position data
     var latitude = e.latLng.lat();
     var longitude = e.latLng.lng();
+    var lat = document.getElementById("lat");
+    lat.setAttribute("value", latitude);
+    var long = document.getElementById("long");
+    long.setAttribute("value", longitude);
     console.log("Latitude: " + latitude +'\n' +"Longitude: " + longitude);
     
     infowindow = new google.maps.InfoWindow;
@@ -83,10 +87,27 @@ function saveData() {
     var name = escape(document.getElementById('description').value);
     var type = document.getElementById('type').value;
     var latlng = marker.getPosition();
+    
+    function(){
+          $.getJSON($SCRIPT_ROOT + '/_submitReport',
+                  { description: description, type: type, latlng: latlng},
+                  function(data) {
+                     var result = data.result;
+                     obj = JSON.parse(result);
+                     if(result == "result: failed"){
+                        alert("error");
+                         }
+                    else{
+                        console.log("success");
+                        }
+                  }); // End of the call to getJSON
+          });  // End of the function to be called when field changes
+    
+    
     messagewindow = new google.maps.InfoWindow({
         content: document.getElementById('message')
     });
-        google.maps.event.addListener(messagewindow,'closeclick',function(){
+        google.maps.event.addListener(map,'click',function(){
         window.location.reload();
    // then, remove the infowindows name from the array
 });
