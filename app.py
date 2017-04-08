@@ -1,6 +1,6 @@
 # app.py for Change4Change
 import flask
-from flask import Flask, request, url_for, jsonify
+from flask import Flask, request, url_for, jsonify, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 
 import json
@@ -40,14 +40,14 @@ app.logger.setLevel(logging.DEBUG)
 def index():
 	if (request.method == 'GET'):
 	    app.logger.debug("Main page entry")
-	    return flask.render_template('index.html')
+	    return render_template('index.html')
 
 # Test function to test database interaction
 # LATER: Will have admin authentication, then various 
 #        queries to show reports.
 @app.route("/displayReports", methods=['GET','POST'])
 def displayReports():
-	return Report.query.all()
+	return render_template('DBtest.html', results = renderReport.query.all())
 
 
 # Database model declaration for report data
