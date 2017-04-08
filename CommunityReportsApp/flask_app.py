@@ -1,19 +1,21 @@
-# app.py for Change4Change
-import flask
+# communityReportsApp.py
+
 from flask import Flask, request, url_for, jsonify, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 
 from datetime import datetime
-
 import json
 import logging
 import CONFIG
 import uuid
 
-###
-# Globals
-###
+###############
+### Globals ###
+###############
 app = flask.Flask(__name__)
+app.secret_key = str(uuid.uuid4())
+app.debug = CONFIG.DEBUG
+app.logger.setLevel(logging.DEBUG)
 
 # Database Globals
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
@@ -27,22 +29,9 @@ app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 
 db = SQLAlchemy(app)
 
-app.secret_key = str(uuid.uuid4())
-app.debug = CONFIG.DEBUG
-app.logger.setLevel(logging.DEBUG)
-
-
-#############
-####Pages####
-#############
-
-### Home Page ###
-@app.route("/", methods=['GET','POST'])
-@app.route("/index", methods=['GET','POST'])
-def index():
-	if (request.method == 'GET'):
-	    app.logger.debug("Main page entry")
-	    return render_template('index.html')
+###############
+### Routes  ###
+###############
 
 # Test function to test database interaction
 # LATER: Will have admin authentication, then various 
@@ -52,13 +41,22 @@ def displayReports():
     results = Report.query.all()
     return render_template('DBtest.html', results = results)
 
+@app.route("/", methods=['GET','POST'])
+def login():
+	# User is accessing the login page
+	if (request.method == 'GET'):
+		return render_template('login.html')
+	# User is trying to log in to Google
+	else:
+		token = request.form.get('token')
+		# LATER: save token to session for reports
+
 
 @app.route("/report", methods=['GET','POST'])
 def report():
 	# If user is directed to the report page
 	if (request.method == 'GET'):
-		pass
-		# return render_template('report.html')
+		return render_template('report.html')
 	# If the user has posted a report form
 	else:
 		latitude = request.form.get('latitude')
@@ -66,6 +64,7 @@ def report():
 		reportText = request.form.get('reportText')
 		isEmergency = request.form.get('isEmergency')
 
+		# Create new report row
 		newReport = Report(
 			latitude = latitude,
 			longitude = longitude,
@@ -77,9 +76,17 @@ def report():
 		db.session.add(newReport)
 		db.session.commit()
 
-		return render_template('index.html')
+		# Render report page with report confirmation
+		return render_template('report.html', success = True)
+
+@app.route("/mapFile")
+def mapFile():
+    return flask.render_template('map.html')
 
 
+###############
+### Models  ###
+###############
 
 # Database model declaration for report data
 class Report(db.Model):
@@ -92,6 +99,8 @@ class Report(db.Model):
 	event_dt = db.Column(db.DateTime)
 	text = db.Column(db.String(4096))
 	isEmergency = db.Column(db.Boolean)
+	token = db.Column(db.String(1024))
+	isAnonymous = db.Column(db.Boolean)
 
     
 if __name__ == "__main__":
@@ -100,7 +109,4 @@ if __name__ == "__main__":
     app.debug = CONFIG.DEBUG
     app.logger.setLevel(logging.DEBUG)
     app.run(port=CONFIG.PORT,threaded=True)
-
-
-
 
