@@ -16,6 +16,7 @@ import uuid
 app.secret_key = str(uuid.uuid4())
 app.debug = CONFIG.DEBUG
 app.logger.setLevel(logging.DEBUG)
+
 #############
 ####Pages####
 #############
@@ -27,18 +28,10 @@ app.logger.setLevel(logging.DEBUG)
 def index():
     app.logger.debug("Main page entry")
     return flask.render_template('index.html')
-    
-    
+
 @app.route("/mapFile")
 def mapFile():
-    return flask.render_template('map.html')    
-    
+    return flask.render_template('map.html')
+
 if __name__ == "__main__":
-    import uuid
-    app.secret_key = str(uuid.uuid4())
-    app.debug = CONFIG.DEBUG
-    app.logger.setLevel(logging.DEBUG)
     app.run(port=CONFIG.PORT,threaded=True)
-
-
-
