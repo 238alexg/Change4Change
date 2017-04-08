@@ -8,8 +8,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 	</head>
 	<body>
-		<div class="g-signin2" data-onsuccess="onSignIn"></div>
-		
+
+
 		<div id="map"></div>
 		<script src="../static/map.js">
 		</script>
@@ -31,6 +31,7 @@
     <div id="message">Location saved</div>
 
 
+<<<<<<< HEAD
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-client_id" content="494678703644-ufofnmrub4m7dm8cn1lo394huo4sqb79.apps.googleusercontent.com">
    
@@ -55,23 +56,25 @@
                 else{
                     console.log(result);
                 }
-            }); // End of the call to getJSON
-            messagewindow = new google.maps.InfoWindow({
-                content: document.getElementById('message')
-            });
-            google.maps.event.addListener(map,'click',function(){
-                window.location.reload();
-                // then, remove the infowindows name from the array
-            });
-            infowindow.close();
-            google.maps.event.addListener(messagewindow,'closeclick',function(){
-                window.location.reload();
-                // then, remove the infowindows name from the array
-            });
-            messagewindow.open(map, marker);
-        });  // End of the function to be called when field changes
+        }); // End of the call to getJSON
+        messagewindow = new google.maps.InfoWindow({
+            content: document.getElementById('message')
+        });
+        google.maps.event.addListener(map,'click',function(){
+            window.location.reload();
+            // then, remove the infowindows name from the array
+        });
+        infowindow.close();
+        google.maps.event.addListener(messagewindow,'closeclick',function(){
+            window.location.reload();
+            // then, remove the infowindows name from the array
+        });
+        messagewindow.open(map, marker);
+       });  // End of the function to be called when field changes
     });   // end of what we do on document ready
     </script>
+=======
+>>>>>>> 5abc8fad1c346af08f91ccf2722b089ed51806fc
 
 	</body>
 	
