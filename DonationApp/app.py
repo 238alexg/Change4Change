@@ -78,10 +78,6 @@ def report():
 
 	return render_template('index.html')
 
-@app.route("/signIn")
-def signIn():
-    return flask.render_template('signIn.html')
-
 # Database model declaration for report data
 class Report(db.Model):
 	__tablename__ = "reports"
