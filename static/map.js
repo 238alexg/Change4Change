@@ -83,43 +83,6 @@ function createWindow(e) {
 
 }
 
-function saveData() {
-    var name = escape(document.getElementById('description').value);
-    var type = document.getElementById('type').value;
-    var latlng = marker.getPosition();
-    
-    function(){
-          $.getJSON($SCRIPT_ROOT + '/_submitReport',
-                  { description: description, type: type, latlng: latlng},
-                  function(data) {
-                     var result = data.result;
-                     obj = JSON.parse(result);
-                     if(result == "result: failed"){
-                        alert("error");
-                         }
-                    else{
-                        console.log(result);
-                        }
-                  }); // End of the call to getJSON
-          });  // End of the function to be called when field changes
-    
-    
-    messagewindow = new google.maps.InfoWindow({
-        content: document.getElementById('message')
-    });
-        google.maps.event.addListener(map,'click',function(){
-        window.location.reload();
-   // then, remove the infowindows name from the array
-});
-    infowindow.close();
-        google.maps.event.addListener(messagewindow,'closeclick',function(){
-        window.location.reload();
-   // then, remove the infowindows name from the array
-});
-    messagewindow.open(map, marker);
-}
-
-
 
 
 
