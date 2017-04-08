@@ -13,5 +13,20 @@
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYk3h5SFMD7YThRHX50g8uZYmPmoqLjnU&callback=initMap"
 		async defer></script>
+		
+		<div id="form">
+      <table>
+      <tr><td>Description</td> <td><input type='text' id='description'/> </td> </tr>
+      <tr><td>Type:</td> <td><select id='type'> +
+                 <option value='crime' SELECTED>crime</option>
+                 <option value='event'>event</option>
+                 </select> </td></tr>
+                 <tr><td></td><td><input type='button' value='Save' onclick='saveData()'/></td></tr>
+      </table>
+    </div>
+    <div id="message">Location saved</div>
+
+		
+		
 	</body>
 </html>
