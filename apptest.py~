@@ -41,7 +41,7 @@ def getReport():
     
 @app.route("/_getMarkers")
 def getMarkers():
-    markers = [{.4,.2,"lol"},{.4,.2,"lol2"}]
+    markers = [[.4,.2,"lol"],[.4,.2,"lol2"]]
     return jsonify(result = markers)
     
 if __name__ == "__main__":

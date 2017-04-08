@@ -1,7 +1,8 @@
+
 var map;
 //#141414
 
-function initMap() {
+function initMap(){
 	var styleArray = [
 	 {
 		featureType: "road",
@@ -58,6 +59,7 @@ function initMap() {
 	map.addListener('rightclick', function(e) {
         createWindow(e);
     });
+
     addMarkers();
 }
 
@@ -85,13 +87,28 @@ function createWindow(e) {
 }
 
 function addMarkers() {
-    var markers = [
+    var markersOld = [
         [ 44.052, -123.086, "a test"],
         [ 44.032, -123.087, "a test2"]
     ];
+    var locations = [
+        {lat: 44.052,lng: -123.082},
+        {lat: 44.041,lng: -123.083}
+    ];
+    
+    var markers = locations.map(function(location, i) {
+        return new google.maps.Marker({
+            position: location
+        });
+    });
+
+    // Add a marker clusterer to manage the markers.
+    var markerCluster = new MarkerClusterer(map, markers,
+        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+    
      var infoWindow = new google.maps.InfoWindow(), marker, i;
      for( i = 0; i < markers.length; i++ ) {
-        var position = new google.maps.LatLng(markers[i][0], markers[i][1]);
+        var position = new google.maps.LatLng(markersOld[i][0], markersOld[i][1]);
         //bounds.extend(position);
         marker = new google.maps.Marker({
             position: position,
@@ -101,7 +118,7 @@ function addMarkers() {
         // Allow each marker to have an info window    
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-                infoWindow.setContent(markers[i][2]);
+                infoWindow.setContent(markersOld[i][2]);
                 infoWindow.open(map, marker);
             }
         })(marker, i));
