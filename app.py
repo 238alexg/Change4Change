@@ -41,11 +41,12 @@ def index():
 	if (request.method == 'GET'):
 	    app.logger.debug("Main page entry")
 	    return flask.render_template('index.html')
-	else:
-		app.logger.debug("Main page POST request")
-   
 
-
+# Test function to test database interaction
+# LATER: Will have admin authentication, then various 
+#        queries to show reports.
+def displayReports():
+	return flask.render_template('displayReports.html', reports = Report.query.all())
 
 
 # Database model declaration for report data
