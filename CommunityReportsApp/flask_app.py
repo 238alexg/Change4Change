@@ -1,5 +1,6 @@
 # communityReportsApp.py
 
+import flask
 from flask import Flask, request, url_for, jsonify, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 
@@ -45,7 +46,7 @@ def displayReports():
 def login():
 	# User is accessing the login page
 	if (request.method == 'GET'):
-		return render_template('login.html')
+		return render_template('signIn.html')
 	# User is trying to log in to Google
 	else:
 		token = request.form.get('token')
@@ -108,8 +109,8 @@ class Report(db.Model):
 	text = db.Column(db.String(4096))
 	isEmergency = db.Column(db.Boolean)
 	isAnonymous = db.Column(db.Boolean)
-	user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship("User", back_populates="reports")
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+	user = db.relationship("User", back_populates="reports")
 
 # Model for users
 class User(db.Model):
@@ -117,7 +118,7 @@ class User(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 
 	token = db.Column(db.String(1024))
-	reports = relationship("Report", back_populates="user")
+	reports = db.relationship("Report", back_populates="user")
 
 
 
