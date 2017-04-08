@@ -59,6 +59,7 @@ class Report(db.Model):
 	longitude = db.Column(db.Float)
 	event_dt = db.Column(db.DateTime)
 	text = db.Column(db.String(4096))
+	isEmergency = db.Column(db.Boolean)
 
     
 if __name__ == "__main__":
