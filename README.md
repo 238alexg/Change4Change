@@ -5,7 +5,6 @@ $4Change
 ```
 virtualenv env
 source env/bin/activate
-pip install -r requirements.txt (not necessary?)
-pip install flask
-python app.py
+pip install -r requirements.txt
+python3 app.py
 ```
