@@ -1,8 +1,6 @@
 # app.py for Change4Change
 import flask
-from flask import request
-from flask import url_for
-from flask import jsonify # For AJAX transactions
+from flask import Flask, request, url_for, jsonify
 
 import json
 import logging
@@ -11,13 +9,14 @@ import logging
 # Globals
 ###
 app = flask.Flask(__name__)
+
 import CONFIG
+
 
 import uuid
 app.secret_key = str(uuid.uuid4())
 app.debug = CONFIG.DEBUG
 app.logger.setLevel(logging.DEBUG)
-
 #############
 ####Pages####
 #############
@@ -29,13 +28,14 @@ app.logger.setLevel(logging.DEBUG)
 def index():
     app.logger.debug("Main page entry")
     return flask.render_template('index.html')
-
-
-@app.errorhandler(404)
-def page_not_found(error):
-    app.logger.debug("Page not found")
-    flask.session['linkback'] = flask.url_for("index")
-    return flask.render_template('page_not_found.html'), 404
+    
+    
+if __name__ == "__main__":
+    import uuid
+    app.secret_key = str(uuid.uuid4())
+    app.debug = CONFIG.DEBUG
+    app.logger.setLevel(logging.DEBUG)
+    app.run(port=CONFIG.PORT,threaded=True)
 
 
 
