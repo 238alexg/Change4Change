@@ -1,7 +1,7 @@
 var map;
 //#141414
-function initMap() {
 
+function initMap() {
 	var styleArray = [
 	 {
 		featureType: "road",
@@ -55,11 +55,37 @@ function initMap() {
 	marker = new google.maps.Marker({
       map: map,
     }),
-    infowindow = new google.maps.InfoWindow;
 	map.addListener('rightclick', function(e) {
     marker.setPosition(e.latLng);
-    infowindow.setContent("Latitude: " + e.latLng.lat() +
-      "<br>" + "Longitude: " + e.latLng.lng());
-    infowindow.open(map, marker);
+    
+    var latitude = e.latLng.lat();
+    var longitude = e.latLng.lng();
+    console.log("Latitude: " + latitude +'\n' +"Longitude: " + longitude);
+    createWindow();
+
+
   });
 }
+
+function createWindow() {
+    infowindow = new google.maps.InfoWindow;
+    var formData = document.getElementById('form');
+    infowindow.setContent(formData);
+    infowindow.open(map, marker);
+    messagewindow = new google.maps.InfoWindow({
+        content: document.getElementById('message')
+    });
+}
+
+function saveData() {
+    var name = escape(document.getElementById('name').value);
+    var address = escape(document.getElementById('address').value);
+    var type = document.getElementById('type').value;
+    var latlng = marker.getPosition();
+    messagewindow.open(map, marker);
+}
+
+
+
+
+

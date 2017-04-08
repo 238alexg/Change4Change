@@ -9,7 +9,7 @@
 	</head>
 		<body>
 		<div id="map"></div>
-		<script src="templates/map.js">
+		<script src="../static/map.js">
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYk3h5SFMD7YThRHX50g8uZYmPmoqLjnU&callback=initMap"
 		async defer></script>
