@@ -9,7 +9,11 @@ p {font-size: 16px;}
 .bg-1 { 
     background-color: #1abc9c; /* Green */
     color: #ffffff;
-    opacity: 0.5;
+    opacity: 0.7;
+}
+.img-1 {
+  background: url("../img/city.jpg");
+  position: relative;
 }
 .bg-2 { 
     background-color: #474e5d; /* Dark Blue */
