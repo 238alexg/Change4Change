@@ -79,10 +79,6 @@ def report():
 		# Render report page with report confirmation
 		return render_template('report.html', success = True)
 
-@app.route("/mapFile")
-def mapFile():
-    return flask.render_template('map.html')
-
 
 ###############
 ### Models  ###
