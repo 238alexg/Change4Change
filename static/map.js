@@ -66,6 +66,10 @@ function createWindow(e) {
     //set position data
     var latitude = e.latLng.lat();
     var longitude = e.latLng.lng();
+    var lat = document.getElementById("lat");
+    lat.setAttribute("value", latitude);
+    var long = document.getElementById("long");
+    long.setAttribute("value", longitude);
     console.log("Latitude: " + latitude +'\n' +"Longitude: " + longitude);
     
     infowindow = new google.maps.InfoWindow;
