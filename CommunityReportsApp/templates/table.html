@@ -26,23 +26,22 @@
       </tr>
     </thead>
     <tbody>
+    {% for item in items %}
       <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-        <td>johm</td>
-        <td>john</td>
+        {% for item in items %}
+        <td>{{ item.date }}</td>
+        <td>{{ item.time }}</td>
+        <td>{{ item.location }}</td>
+        <td>{{ item.incident }}</td>
+        <td>{{ item.desc }}</td>
+        {% if item.anon %}
+        <td class="danger">{{ item.anon }}</td>  
+        {% else %}
+        <td>{{ item.anon }}</td>
+        {% endif %}
+        {% endfor %}
       </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
+    {% endfor %}
     </tbody>
   </table>
 </div>
