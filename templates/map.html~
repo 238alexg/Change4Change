@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Simple Map</title>
+		<meta name="viewport" content="initial-scale=1.0">
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../static/mapStyle.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	</head>
+		<body>
+		<div id="map"></div>
+		<script src="templates/map.js">
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYk3h5SFMD7YThRHX50g8uZYmPmoqLjnU&callback=initMap"
+		async defer></script>
+	</body>
+</html>

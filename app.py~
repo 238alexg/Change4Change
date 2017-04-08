@@ -1,6 +1,6 @@
 # app.py for Change4Change
 import flask
-from flask import Flask, request, url_for, jsonify
+from flask import Flask, request, url_for, jsonify, render_template, send_from_directory
 
 import json
 import logging
@@ -8,7 +8,8 @@ import logging
 ###
 # Globals
 ###
-app = flask.Flask(__name__)
+app = flask.Flask(__name__, static_url_path="")
+app._static_folder = "static"
 
 import CONFIG
 
@@ -31,7 +32,7 @@ def index():
     
 @app.route("/mapFile")
 def mapFile():
-    return flask.render_template('map.html')    
+    return flask.send_static_file('map.html')    
     
 if __name__ == "__main__":
     import uuid
