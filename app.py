@@ -3,6 +3,8 @@ import flask
 from flask import Flask, request, url_for, jsonify, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 
+from datetime import datetime
+
 import json
 import logging
 import CONFIG
@@ -49,6 +51,34 @@ def index():
 def displayReports():
     results = Report.query.all()
     return render_template('DBtest.html', results = results)
+
+
+@app.route("/report", methods=['GET','POST'])
+def report():
+	# If user is directed to the report page
+	if (request.method == 'GET'):
+		pass
+		# return render_template('report.html')
+	# If the user has posted a report form
+	else:
+		latitude = request.form.get('latitude')
+		longitude = request.form.get('longitude')
+		reportText = request.form.get('reportText')
+		isEmergency = request.form.get('isEmergency')
+
+		newReport = Report(
+			latitude = latitude,
+			longitude = longitude,
+			event_dt = datetime.now(),
+			text = reportText,
+			isEmergency = isEmergency
+		)
+
+		db.session.add(newReport)
+		db.session.commit()
+
+		return render_template('index.html')
+
 
 
 # Database model declaration for report data
