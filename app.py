@@ -33,5 +33,9 @@ def index():
 def mapFile():
     return flask.render_template('map.html')
 
+@app.route("/signIn")
+def signIn():
+    return flask.render_template('signIn.html')
+
 if __name__ == "__main__":
     app.run(port=CONFIG.PORT,threaded=True)
