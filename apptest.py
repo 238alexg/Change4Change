@@ -39,6 +39,11 @@ def getReport():
     print alat
     return jsonify(result = alat)
     
+@app.route("/_getMarkers")
+def getMarkers():
+    markers = [[.4,.2,"lol"],[.4,.2,"lol2"]]
+    return jsonify(result = markers)
+    
 if __name__ == "__main__":
     import uuid
     app.secret_key = str(uuid.uuid4())

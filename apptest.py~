@@ -34,9 +34,15 @@ def index():
 def getReport():
     description = request.args.get('description',0, type=str)
     atype = request.args.get('type',0, type=str)
-    latlng = request.args.get('latlng',0, type=object)
-    print latlng
-    return jsonify(result = latlng)
+    alat = request.args.get('lat',0, type=float)
+    along = request.args.get('long',0, type=float)
+    print alat
+    return jsonify(result = alat)
+    
+@app.route("/_getMarkers")
+def getMarkers():
+    markers = [{.4,.2,"lol"},{.4,.2,"lol2"}]
+    return jsonify(result = markers)
     
 if __name__ == "__main__":
     import uuid
