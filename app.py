@@ -45,8 +45,9 @@ def index():
 # Test function to test database interaction
 # LATER: Will have admin authentication, then various 
 #        queries to show reports.
+@app.route("/displayReports", methods=['GET','POST'])
 def displayReports():
-	return flask.render_template('displayReports.html', reports = Report.query.all())
+	return Report.query.all()
 
 
 # Database model declaration for report data
