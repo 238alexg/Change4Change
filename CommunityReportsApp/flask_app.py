@@ -34,7 +34,7 @@ db = SQLAlchemy(app)
 ###############
 
 # Test function to test database interaction
-# LATER: Will have admin authentication, then various 
+# LATER: Will have admin authentication, then various
 #        queries to show reports.
 @app.route("/displayReports", methods=['GET','POST'])
 def displayReports():
@@ -88,6 +88,10 @@ def report():
 def mapFile():
     return flask.render_template('map.html')
 
+@app.route("/signIn")
+def signIn():
+    return flask.render_template('signIn.html')
+
 
 ###############
 ### Models  ###
@@ -116,11 +120,10 @@ class User(db.Model):
 	reports = relationship("Report", back_populates="user")
 
 
-    
+
 if __name__ == "__main__":
     import uuid
     app.secret_key = str(uuid.uuid4())
     app.debug = CONFIG.DEBUG
     app.logger.setLevel(logging.DEBUG)
     app.run(port=CONFIG.PORT,threaded=True)
-
