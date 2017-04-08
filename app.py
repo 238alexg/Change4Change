@@ -45,7 +45,7 @@ def index():
 	    return render_template('index.html')
 
 # Test function to test database interaction
-# LATER: Will have admin authentication, then various 
+# LATER: Will have admin authentication, then various
 #        queries to show reports.
 @app.route("/displayReports", methods=['GET','POST'])
 def displayReports():
@@ -73,13 +73,14 @@ def report():
 			text = reportText,
 			isEmergency = isEmergency
 		)
+	db.session.add(newReport)
+	db.session.commit()
 
-		db.session.add(newReport)
-		db.session.commit()
+	return render_template('index.html')
 
-		return render_template('index.html')
-
-
+@app.route("/signIn")
+def signIn():
+    return flask.render_template('signIn.html')
 
 # Database model declaration for report data
 class Report(db.Model):
@@ -93,13 +94,5 @@ class Report(db.Model):
 	text = db.Column(db.String(4096))
 	isEmergency = db.Column(db.Boolean)
 
-    
 if __name__ == "__main__":
-    import uuid
-    app.secret_key = str(uuid.uuid4())
-    app.debug = CONFIG.DEBUG
-    app.logger.setLevel(logging.DEBUG)
     app.run(port=CONFIG.PORT,threaded=True)
-
-
-

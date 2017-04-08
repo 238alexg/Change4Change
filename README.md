@@ -1,7 +1,7 @@
 # Change4Change
 
 ## Description 
-$4Change
+Change4Change is a secure alternative to giving to panhandlers.
 
 ## Link: 
 http://change4change.pythonanywhere.com/ <br/>
@@ -19,6 +19,5 @@ Brandon Sov<br/>
 virtualenv env
 source env/bin/activate
 pip install -r requirements.txt
-pip install flask
 python3 app.py
 ```
