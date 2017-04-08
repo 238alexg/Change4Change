@@ -17,8 +17,12 @@
     }
     p {font-size: 16px;}
     .margin {margin-bottom: 45px;}
+    .bg-0 {
+      background-color: #2f2f2f; /* Black Gray */
+      color: #fff;
+    }
     .bg-1 { 
-        background-color: rgba(26, 188, 156, 0.9); /* Green */
+        background-color: rgba(26, 188, 156, 0.7); /* Green */
         color: #ffffff;
     }
     .img-1 {
@@ -26,6 +30,7 @@
       position: relative;
       background-repeat: no-repeat;
       background-size: cover;
+      background-position: 0% 100%; 
     }
     .bg-2 { 
         background-color: #474e5d; /* Dark Blue */
@@ -64,6 +69,10 @@
              border-radius: 8px;
      display: block;
      margin: 0 auto;
+     color: blue;
+     background-color: yellow;
+     max-width: 500px;
+     width: 80%;
     }
   </style>
 </head>
@@ -82,35 +91,35 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href=#img-1>Donate</a></li>
-        <li><a href="#myCarousel">About</a></li>
-        <li><a href="#container-fluid bg-3 text-center">Sponsors</a></li>
+        <li><a href="#donate">Donate</a></li>
+        <li><a href="#aboutSect">About</a></li>
+        <li><a href="#sponsors">Sponsors</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
 <!-- First Container -->
-<div class="img-1">
+<div class="img-1" id = "donate">
   <div class="container-fluid bg-1 text-center">
-    <h3 class="margin">Donate</h3>
-    <img src="../static/img/CoE_logo_2clr.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Image" width="350" height="350">
-    <button type="button" class="btn-xlarge">Info</button>
+    <button type="button" class="btn-xlarge">Donate</button>
     <h3>All proceeds goes to St. Vincent DePaul for Homeless Services</h3>
+     <p>In partnership with the City of Eugene</p>
+     <img src="../static/img/CoE_logo_2clr.jpg" class="img-responsive img-circle" alt="Image" width="100" height="100" >
   </div>
 </div>
 
 <!-- Second Container -->
-<div class="container-fluid bg-2 text-center">
+<div id="aboutSect" class="container-fluid bg-2 text-center">
   <h3 class="margin">About</h3>
 
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <div id="mycarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-    <li data-target="#myCarousel" data-slide-to="3"></li>
+    <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#mycarousel" data-slide-to="1"></li>
+    <li data-target="#mycarousel" data-slide-to="2"></li>
+    <li data-target="#mycarousel" data-slide-to="3"></li>
   </ol>
 
   <!-- Wrapper for slides -->
@@ -148,7 +157,7 @@
 </div>
 
 <!-- Third Container (Grid) -->
-<div class="container-fluid bg-3 text-center">    
+<div id="sponsors" class="container-fluid bg-3 text-center">    
   <h3 class="margin">Sponsors</h3><br>
   <div class="row">
     <div class="col-sm-4">
@@ -165,6 +174,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- Footer -->
 
