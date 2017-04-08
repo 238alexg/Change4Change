@@ -63,6 +63,9 @@ def report():
 		longitude = request.form.get('longitude')
 		reportText = request.form.get('reportText')
 		isEmergency = request.form.get('isEmergency')
+		isAnonymous = request.form.get('isAnonymous')
+
+		user = User.query.filter(User.token == session["token"])
 
 		# Create new report row
 		newReport = Report(
@@ -70,7 +73,9 @@ def report():
 			longitude = longitude,
 			event_dt = datetime.now(),
 			text = reportText,
-			isEmergency = isEmergency
+			isEmergency = isEmergency,
+			isAnonymous = isAnonymous,
+			user = user
 		)
 
 		db.session.add(newReport)
@@ -91,7 +96,6 @@ def mapFile():
 # Database model declaration for report data
 class Report(db.Model):
 	__tablename__ = "reports"
-
 	id = db.Column(db.Integer, primary_key = True)
 
 	latitude = db.Column(db.Float)
@@ -99,8 +103,18 @@ class Report(db.Model):
 	event_dt = db.Column(db.DateTime)
 	text = db.Column(db.String(4096))
 	isEmergency = db.Column(db.Boolean)
-	token = db.Column(db.String(1024))
 	isAnonymous = db.Column(db.Boolean)
+	user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship("User", back_populates="reports")
+
+# Model for users
+class User(db.Model):
+	__tablename__ = "users"
+	id = db.Column(db.Integer, primary_key = True)
+
+	token = db.Column(db.String(1024))
+	reports = relationship("Report", back_populates="user")
+
 
     
 if __name__ == "__main__":
