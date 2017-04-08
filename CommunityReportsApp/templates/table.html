@@ -16,8 +16,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Date</th>
-        <th>Time</th>
+        <th>DateTime</th>
         <th>Location</th>
         <th>Incident</th>
         <th>Description</th>
@@ -26,18 +25,17 @@
       </tr>
     </thead>
     <tbody>
-    {% for item in items %}
+    {% for item in reports %}
       <tr>
-        {% for item in items %}
-        <td>{{ item.date }}</td>
-        <td>{{ item.time }}</td>
-        <td>{{ item.location }}</td>
-        <td>{{ item.incident }}</td>
-        <td>{{ item.desc }}</td>
-        {% if item.anon %}
-        <td class="danger">{{ item.anon }}</td>  
+        {% for item in report %}
+        <td>{{ item.event_dt }}</td>
+        <td>{{ item.latitude }}{{ item.longtitude }}</td>
+        <td>{{ item.isEmergency}}</td>
+        <td>{{ item.text }}</td>
+        {% if item.isAnonymous %}
+        <td class="danger">{{ item.isAnonymous }}</td>  
         {% else %}
-        <td>{{ item.anon }}</td>
+        <td>{{ item.isAnonymous }}</td>
         {% endif %}
         {% endfor %}
       </tr>
