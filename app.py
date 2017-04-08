@@ -15,10 +15,10 @@ app = flask.Flask(__name__)
 
 # Database Globals
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-    username="<the username from the 'Databases' tab>",
-    password="<the password you set on the 'Databases' tab>",
-    hostname="<the database host address from the 'Databases' tab>",
-    databasename="<the database name you chose, probably yourusername$comments>",
+    username="change4change",
+    password="noSleep69",
+    hostname="change4change.mysql.pythonanywhere-services.com",
+    databasename="change4change$reports",
 )
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
