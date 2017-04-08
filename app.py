@@ -1,34 +1,64 @@
 # app.py for Change4Change
 import flask
 from flask import Flask, request, url_for, jsonify
+from flask.ext.sqlalchemy import SQLAlchemy
 
 import json
 import logging
+import CONFIG
+import uuid
 
 ###
 # Globals
 ###
 app = flask.Flask(__name__)
 
-import CONFIG
+# Database Globals
+SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+    username="<the username from the 'Databases' tab>",
+    password="<the password you set on the 'Databases' tab>",
+    hostname="<the database host address from the 'Databases' tab>",
+    databasename="<the database name you chose, probably yourusername$comments>",
+)
+app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 
+db = SQLAlchemy(app)
 
-import uuid
 app.secret_key = str(uuid.uuid4())
 app.debug = CONFIG.DEBUG
 app.logger.setLevel(logging.DEBUG)
+
+
 #############
 ####Pages####
 #############
 
 ### Home Page ###
-
-@app.route("/")
-@app.route("/index")
+@app.route("/", methods=['GET','POST'])
+@app.route("/index", methods=['GET','POST'])
 def index():
-    app.logger.debug("Main page entry")
-    return flask.render_template('index.html')
-    
+	if (request.method == 'GET'):
+	    app.logger.debug("Main page entry")
+	    return flask.render_template('index.html')
+	else:
+		app.logger.debug("Main page POST request")
+   
+
+
+
+
+# Database model declaration for report data
+class Report(db.Model):
+	__tablename__ = "reports"
+
+	id = db.Column(db.Integer, primary_key = True)
+
+	latitude = db.Column(db.Float)
+	longitude = db.Column(db.Float)
+	event_dt = db.Column(db.DateTime)
+	text = db.Column(db.String(4096))
+
     
 if __name__ == "__main__":
     import uuid
