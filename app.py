@@ -47,7 +47,8 @@ def index():
 #        queries to show reports.
 @app.route("/displayReports", methods=['GET','POST'])
 def displayReports():
-	return render_template('DBtest.html', results = renderReport.query.all())
+    results = Report.query.all()
+    return render_template('DBtest.html', results = results)
 
 
 # Database model declaration for report data
