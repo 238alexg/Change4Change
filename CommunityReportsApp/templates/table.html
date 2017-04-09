@@ -76,33 +76,23 @@
   <table class="table" id="thisTable">
     <thead>
       <tr>
-        <th>DateTime</th>
-        <th>Incident</th>
         <th>Description</th>
-        <th>Anonymous</th>
         <th>    </th>
       </tr>
     </thead>
     <tbody>
     {% for item in reports %}
         {% if (item.isEmergency) %}
-        <tr style= "background-color: rgba(255, 0, 0, 0.7)">
+        <tr style= "background-color: rgba(255, 0, 0, 0.5)">
         {% else %}
         <tr>
         {% endif %}
-            <td>{{ item.human_time }}</td>
-            {% if (item.isEmergency) %}
-                <td>EMERGENCY!</td>
-            {% else %}
-                <td>Not Urgent</td>
-            {% endif %}
             <td>
                 <div class="content hideContent"> {{ item.text }}
-                    <p>More details</p>
                     <ul>
-                        <li>This is text</li>
-                        <li>This could be more text</li>
-                        <li>This is text</li>
+                        <li>Time: {{ item.event_dt }}</li>
+                        <li>Loc: {{ item.latitude }}, {{ item.longitude }}</li>
+                        <li>Anonymously Submitted: {{ item.isAnonymous }}</li>
                     </ul>
                 </div>
                 <div class="show-more">
@@ -111,12 +101,6 @@
 
 
             </td>
-
-            {% if (item.isAnonymous) %}
-                <td>ANONYMOUS</td>
-            {% else %}
-                <td>PUBLIC</td>
-            {% endif %}
             <td> <form type="hidden" action = "/deleteReport" method="POST">
                 <input type="hidden" value="{{item.id}}" name="id"></input>
                 <input type="submit" value="X" class="btn btn-danger btn-circle delete-row" href="#" ></input>
