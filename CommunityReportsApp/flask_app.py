@@ -67,7 +67,8 @@ def report():
 @app.route("/testReports", methods=['GET','POST'])
 def testReports():
 	if (session.get('token')):
-		reports = Report.query.all()
+		user = User.query.filter_by(id=session['token']).first()
+		reports = Report.query.filter_by(user=user).all()
 		return render_template('table.html', reports = reports)
 	else:
 		return redirect('/login')
@@ -79,7 +80,6 @@ def getMarkers():
 
 	for report in reports:
 		epoch = report.event_dt.strftime('%s')
-
 		if (report.isEmergency):
 			data.append([report.latitude, report.longitude, report.text, "Crime", epoch])
 		else:
@@ -115,7 +115,8 @@ def submitReport():
 	db.session.add(newReport)
 	db.session.commit()
 
-	return jsonify(result = True)
+	return render_template('error.html', error = newReport)
+	#return jsonify(result = True)
 
 
 @app.route("/deleteReport", methods=['POST'])
