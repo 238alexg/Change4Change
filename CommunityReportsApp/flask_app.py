@@ -47,9 +47,9 @@ def login():
 		
 		session['token'] = token
 
-		return render_template('error.html', error = "You are logged in!")
-
-	return render_template('signIn.html')
+		return redirect("/report")
+	else:
+        return render_template('signIn.html')
 
 @app.route("/", methods=['GET','POST'])
 @app.route("/report", methods=['GET','POST'])
