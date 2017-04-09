@@ -27,7 +27,6 @@
     <tbody>
     {% for item in reports %}
 
-    <button class="rowExpand">
         {% if (item.isEmergency) %}
         <tr class="emergency">
         {% else %}
@@ -46,7 +45,7 @@
                 <td>PUBLIC</td>
             {% endif %}
         </tr>
-    </button>
+
     {% endfor %}
 
 

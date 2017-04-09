@@ -54,7 +54,8 @@ def login():
 @app.route("/", methods=['GET','POST'])
 @app.route("/report", methods=['GET','POST'])
 def report():
-	if (session['token']):
+
+	if (session.get('token') != None):
 		# If user is directed to the report page
 		if (request.method == 'GET'):
 			return render_template('map.html')
@@ -64,7 +65,7 @@ def report():
 			longitude = request.form.get('longitude')
 			reportText = request.form.get('reportText')
 			isEmergency = request.form.get('isEmergency')
-			isAnonymous = request.form.get('isAnonymous')
+			isAnonymous = request.form.get('anonymous')
 
 			user = User.query.filter(User.token == session["token"])
 
