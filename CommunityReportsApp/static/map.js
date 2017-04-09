@@ -15,7 +15,7 @@ function initMap(){
   marker = new google.maps.Marker({
       map: map
     });
-  map.addListener('rightclick', function(e) {
+  map.addListener('click', function(e) {
         createWindow(e);
     });
 
