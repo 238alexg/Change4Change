@@ -31,7 +31,7 @@
         {% if (item.isEmergency) %}
         <tr class="emergency">
         {% else %}
-        <tr data-toggle="collapse" data-target="#accordion">
+        <tr>
         {% endif %}
             <td>{{ item.event_dt }}</td>
             {% if (item.isEmergency) %}
@@ -40,7 +40,7 @@
                 <td>idgaf</td>
             {% endif %}
             <td>
-                <div> class="content hideContent"> {{ item.text }}
+                <div class="content hideContent"> {{ item.text }}
                     <p>Some more text</p>
                     <ul>
                         <li>Some more text</li>
