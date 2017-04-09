@@ -43,14 +43,12 @@ def displayReports():
     return render_template('DBtest.html', results = results)
 
 @app.route("/", methods=['GET','POST'])
-def login():=
+def login():
 	# User is trying to log in to Google
 	if (request.method == 'POST'):
 		token = request.form.get('token')
-<<<<<<< HEAD
 		print(token)
 		return render_template('map.html')
-=======
 		user = Users.query.filter(User.token == token)
 
 		if (user == None):
@@ -58,7 +56,6 @@ def login():=
 			db.session.add(newUser)
 			db.session.commit()
 			user = Users.query.filter(User.token == token)
->>>>>>> 3a86dd1032235169b2b50a586dd9920723d1bb52
 
 		session['token'] = token
 
@@ -134,7 +131,7 @@ class User(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 
 	token = db.Column(db.String(1024), unique = True)
-	reports = relationship("Report", back_populates="user")
+	reports = db.relationship("Report", back_populates="user")
 
 
 if __name__ == "__main__":
