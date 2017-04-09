@@ -15,7 +15,7 @@ function initMap(){
   marker = new google.maps.Marker({
       map: map
     });
-  map.addListener('rightclick', function(e) {
+  map.addListener('click', function(e) {
         createWindow(e);
     });
 
@@ -92,10 +92,10 @@ function addMarkers(markersOld) {
         }
         var aIcon;
         if(markersOld[i][3]){
-            aIcon = 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png';
+            aIcon = 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png';
         }
         else{
-            aIcon = 'https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png';
+            aIcon = 'https://maps.google.com/mapfiles/ms/icons/red-dot.png';
         }
         marker = new google.maps.Marker({
             position: position,
