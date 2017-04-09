@@ -154,6 +154,7 @@ def deleteReport():
 	reportID = report.form.get('id')
 	Report.query.filter_by(id=reportID).delete()
 	db.session.commit()
+	return redirect('/testReports')
 
 ###############
 ### Models  ###
