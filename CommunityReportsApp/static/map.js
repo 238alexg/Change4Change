@@ -51,7 +51,7 @@ function initMap() {
   });
 	var trafficLayer = new google.maps.TrafficLayer();
 	trafficLayer.setMap(map);
-	
+
 	marker = new google.maps.Marker({
       map: map
     });
@@ -62,7 +62,7 @@ function initMap() {
 
 function createWindow(e) {
     marker.setPosition(e.latLng);
-    
+
     //set position data
     var latitude = e.latLng.lat();
     var longitude = e.latLng.lng();
@@ -71,7 +71,7 @@ function createWindow(e) {
     var long = document.getElementById("long");
     long.setAttribute("value", longitude);
     console.log("Latitude: " + latitude +'\n' +"Longitude: " + longitude);
-    
+
     infowindow = new google.maps.InfoWindow;
      var formData = document.getElementById('form');
     infowindow.setContent(formData);
@@ -87,8 +87,8 @@ function saveData() {
     var name = escape(document.getElementById('description').value);
     var type = document.getElementById('type').value;
     var latlng = marker.getPosition();
-    
-    function(){
+
+    function main(){
           $.getJSON($SCRIPT_ROOT + '/_submitReport',
                   { description: description, type: type, latlng: latlng},
                   function(data) {
@@ -101,9 +101,9 @@ function saveData() {
                         console.log(result);
                         }
                   }); // End of the call to getJSON
-          });  // End of the function to be called when field changes
-    
-    
+          };  // End of the function to be called when field changes
+
+
     messagewindow = new google.maps.InfoWindow({
         content: document.getElementById('message')
     });
@@ -118,8 +118,3 @@ function saveData() {
 });
     messagewindow.open(map, marker);
 }
-
-
-
-
-
