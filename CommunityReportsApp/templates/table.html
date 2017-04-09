@@ -86,9 +86,13 @@
                 <div class="content hideContent"> {{ item.text }}
                     <ul>
                         <br>
-                        <li>Time: {{ item.event_dt }}</li>
+                        <li>Time: {{ item.event_dt.strftime('%m/%d/%Y %H:%M') }}</li>
                         <li>Loc: {{ item.latitude }}, {{ item.longitude }}</li>
-                        <li>Anonymously Submitted: {{ item.isAnonymous }}</li>
+                        {% if item.isAnonymous %}
+                        <li>Anonymous</li>
+                        {% else %}
+                        <li>Not Anonymous</li>
+                        {% endif %}
                     </ul>
                 </div>
                 <div class="show-more">
