@@ -8,7 +8,10 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 	</head>
 	<body>
-		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+
 
 		<div id="map"></div>
 		<script src="../static/map.js">
@@ -16,24 +19,48 @@
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYk3h5SFMD7YThRHX50g8uZYmPmoqLjnU&callback=initMap"
 		async defer></script>
 
-		<div id="form">
-			<table>
-			<input type="hidden" id="lat">
-			<input type="hidden" id="long">
-			<tr><td>Description</td> <td><input type='text' id='description'/> </td> </tr>
-			<tr><td>Type:</td> <td><select id='type'> +
-			         <option value='crime' SELECTED>crime</option>
-			         <option value='event'>event</option>
-			         </select> </td></tr>
-			         <tr><td></td><td><input type='button' value='Save' onclick='saveData()'/></td></tr>
-			</table>
-		</div>
-    <div id="message">Location saved</div>
-
-
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<meta name="google-signin-client_id" content="752679559060-aau2hf5upuvgnb9k7rd5h6huip2rdcbd.apps.googleusercontent.com">
+	<meta name="google-signin-client_id" content="494678703644-ufofnmrub4m7dm8cn1lo394huo4sqb79.apps.googleusercontent.com">
 
+<script type="text/javascript">
+
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    $(document).ready(function(){
+      $("#myBtn").click(function(){
+        var description = document.getElementById('description').value;
+        var type = document.getElementById('type').value;
+        var lat = document.getElementById('lat').value;
+        var long = document.getElementById('long').value;
+        var anon = document.getElementById('anon').value;
+        $.getJSON('/_submitReport',
+            { description: description, type: type, lat: lat, long: long, anon: anon},
+            function(data) {
+                var result = data.result;
+                obj = JSON.parse(result);
+                if(result == "result: failed"){
+                     alert("error");
+                }
+                else{
+                    console.log(result);
+                }
+        }); // End of the call to getJSON
+        messagewindow = new google.maps.InfoWindow({
+            content: document.getElementById('message')
+        });
+        google.maps.event.addListener(map,'click',function(){
+            window.location.reload();
+            // then, remove the infowindows name from the array
+        });
+        infowindow.close();
+        google.maps.event.addListener(messagewindow,'closeclick',function(){
+            window.location.reload();
+            // then, remove the infowindows name from the array
+        });
+        messagewindow.open(map, marker);
+       });  // End of the function to be called when field changes
+    });   // end of what we do on document ready
+    </script>
 
 	</body>
+
 </html>
