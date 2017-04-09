@@ -78,13 +78,14 @@
     <tbody>
     {% for item in reports %}
         {% if (item.isEmergency) %}
-        <tr style= "background-color: rgba(255, 0, 0, 0.5)">
+        <tr style= "background-color: rgba(255, 0, 0, 0.5);">
         {% else %}
-        <tr>
+        <tr style="background-color: rgba(138, 130, 130, 0.5);">
         {% endif %}
             <td>
                 <div class="content hideContent"> {{ item.text }}
                     <ul>
+                        <br>
                         <li>Time: {{ item.event_dt }}</li>
                         <li>Loc: {{ item.latitude }}, {{ item.longitude }}</li>
                         <li>Anonymously Submitted: {{ item.isAnonymous }}</li>
