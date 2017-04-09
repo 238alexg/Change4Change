@@ -22,7 +22,7 @@
       color: #fff;
     }
     .bg-1 {
-        background-color: rgba(81, 145, 205, 0.45); /* Green */
+        background-color: rgba(81, 145, 205, 0.45); /* Blue */
         color: #ffffff;
     }
     .img-1 {
@@ -71,7 +71,7 @@
      display: block;
      margin: 0 auto;
      color: #75818c;
-     background-color: yellow;
+     background-color: #F7C500;
      max-width: 500px;
      width: 80%;
      margin-bottom: 5%;
@@ -80,12 +80,33 @@
       margin: 0 auto;
     }
     .logo-img {
-      width: 25%;
-      height: 25%;
+      width: 50%;
+      height: 50%;
       max-width: 75px;
       max-height: 75px;
       display: inline;
       margin: 5px;
+    }
+    .spons-img {
+      width: 40%;
+      height: 40%;
+      max-width: 200px;
+      max-height: 200px;
+      display: inline;
+    }
+    .row-centered {
+      text-align:center;
+      margin: auto;
+    }
+    .col-centered {
+      display: inline-block;
+      float:none;
+      /* inline-block space fix */
+      margin-right:-4px;
+    }
+    .col-max {
+      /* custom max width */
+      max-width:320px;
     }
   </style>
 </head>
@@ -106,7 +127,8 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#donate">Donate</a></li>
         <li><a href="#aboutSect">About</a></li>
-        <li><a href="#sponsors">Sponsors</a></li>
+        <li><a href="#buys">Proceeds</a></li>
+        <li><a href="#partnershipBox">Sponsors</a></li>
       </ul>
     </div>
   </div>
@@ -115,21 +137,51 @@
 <!-- First Container -->
 <div class="img-1" id = "donate">
   <div class="container-fluid bg-1 text-center">
-    <h3 style="margin-bottom: 5%; font-size: 6vmin; margin-top: 0px;">A safer way to help the homeless</h3>
-    <button type="button" class="btn-xlarge">Donate</button>
+    <h2 style="margin-bottom: 5%; font-size: 6vmin; margin-top: 0px;">A safer way to help the homeless</h2>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+      <!-- Identify your business so that you can collect the payments. -->
+    <input type="hidden" name="business"
+        value="ACCCOOOUNNTNAME">
+
+    <!-- Specify a Donate button. -->
+    <input type="hidden" name="cmd" value="_donations">
+
+    <!-- Specify details about the contribution -->
+    <input type="hidden" name="item_name" value="Friends of the Park">
+    <input type="hidden" name="item_number" value="Fall Cleanup Campaign">
+    <input type="hidden" name="currency_code" value="USD">
+
+    <input type="submit" value="Donate" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn-xlarge">
+    <img alt="" width="1" height="1"
+      src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+
+    </form>
     <p style="margin-right: 25%; margin-left: 25%; font-size: 2.5vmin; margin-bottom: 5%;">Change4Change is a secure alternative to giving to panhandlers.</p>
-    <div class="container text-center" id = partnershipBox style="background-color:rgba(50,50,50,0.5); width: 40%; height:auto;">
-      <p style="margin-bottom: 0px; font-size: 2.5vmin;">Partnering with</p>
-      <img src="../static/img/CoE_logo_2clr.jpg" class="img-responsive img-circle logo-img" alt="Image">
-      <img src="../static/img/stpaul logo.jpg" class="img-responsive img-circle logo-img" alt="Image">
-    </div>
   </div>
 </div>
 
-<!-- Second Container -->
-<div id="aboutSect" class="container-fluid bg-2 text-center" style="padding-top: 50px; padding-bottom:50px;">
-  <h2 class="margin" style="margin-top: 0px; margin-bottom: 20px">About</h2>
-    <p> This is about .............. </p>
+<!-- Second Container (Grid) -->
+<div id="aboutSect" class="container-fluid bg-3 text-center">
+  <h2 >About</h2><br>
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-4">
+    <h3>What?</h3>
+      <p>Many of us are uncomfortable giving money to panhandlers, but really want to help people in need. Change4Change sends your gift to a dedicated fund at St. Vincent de Paul, providing direct service to homeless residents and helping you give wisely on the go.</p>
+    </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4">
+    <h3>Why?</h3>
+      <p>Using Change4Change takes away the incentives driving dense concentrations of panhandlers in lively pedestrian areas such as downtown. It also provides an easy way to support experienced providers of services to people in need, document your real-time giving for tax purposes, and make sure your money will help improve lives.</p>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+</div>
+
+<!-- Third Container -->
+<div id="buys" class="container-fluid bg-2 text-center">
+  <h2 class="margin">What your money buys</h2>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -167,31 +219,27 @@
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
-
-
-
-</div>
-
-<!-- Third Container (Grid) -->
-<div id="sponsors" class="container-fluid bg-3 text-center">
-  <h2 class="margin">Sponsors</h2><br>
-  <div class="row">
-    <div class="col-sm-4">
-      <h3>Misson Statement</h3>
-      <p>Money to help the homeless</p>
-      <img src="../static/img/CoE_logo_2clr.jpg" class="img-responsive img-circle" alt="Image" width="50" height="50" style="width:100% margin:0 auto">
-    </div>
-    <div class="col-sm-4">
-      <p>Where the Proceeds Goes</p>
-      <img src="../static/img/stpaul logo.jpg" class="img-responsive img-circle" alt="Image" width="50" height="50" style="width:100% margin:0 auto">
-    </div>
-    <div class="col-sm-4">
-      <p>Learn More</p>
-      <img src="birds3.jpg" class="img-responsive margin" style="width:100%" alt="Image">
-    </div>
   </div>
 </div>
+
+<!-- Fourth Container -->
+<div class="container-fluid bg-4 text-center">
+  <div class="container text-center" id = partnershipBox style="width: 40%; height:auto; padding-left: 0px; padding-right: 0px; width: 100%;">
+    <p style="margin-bottom: 0px;">Partnering with</p>
+    <img src="../static/img/CoE_logo_2clr.jpg" class="img-responsive img-circle logo-img" alt="Image">
+    <a href="http://www.svdp.us/what-we-do/homeless-services/"><img src="../static/img/stpaul logo.jpg" class="img-responsive img-circle logo-img" alt="Image"></a>
+  </div>
+</div>
+
+
+<script>
+  $('a[href*=\\#]').on('click', function(event){     
+    event.preventDefault();
+    $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+  });
+</script>
+
+
 
 
 <!-- Footer -->

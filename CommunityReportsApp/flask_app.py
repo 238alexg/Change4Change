@@ -1,5 +1,6 @@
 # communityReportsApp.py
 
+import flask
 from flask import Flask, request, url_for, jsonify, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 
@@ -34,7 +35,7 @@ db = SQLAlchemy(app)
 ###############
 
 # Test function to test database interaction
-# LATER: Will have admin authentication, then various 
+# LATER: Will have admin authentication, then various
 #        queries to show reports.
 @app.route("/displayReports", methods=['GET','POST'])
 def displayReports():
@@ -42,7 +43,7 @@ def displayReports():
     return render_template('DBtest.html', results = results)
 
 @app.route("/", methods=['GET','POST'])
-def login():
+def login():=
 	# User is trying to log in to Google
 	if (request.method == 'POST'):
 		token = request.form.get('token')
@@ -97,6 +98,10 @@ def report():
 def mapFile():
     return flask.render_template('map.html')
 
+@app.route("/signIn")
+def signIn():
+    return flask.render_template('signIn.html')
+
 
 ###############
 ### Models  ###
@@ -113,8 +118,8 @@ class Report(db.Model):
 	text = db.Column(db.String(4096))
 	isEmergency = db.Column(db.Boolean)
 	isAnonymous = db.Column(db.Boolean)
-	user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship("User", back_populates="reports")
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+	user = db.relationship("User", back_populates="reports")
 
 # Model for users
 class User(db.Model):
@@ -125,11 +130,9 @@ class User(db.Model):
 	reports = relationship("Report", back_populates="user")
 
 
-    
 if __name__ == "__main__":
     import uuid
     app.secret_key = str(uuid.uuid4())
     app.debug = CONFIG.DEBUG
     app.logger.setLevel(logging.DEBUG)
     app.run(port=CONFIG.PORT,threaded=True)
-

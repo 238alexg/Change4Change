@@ -1,8 +1,8 @@
 function onSignIn(googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
-    var id = document.createElement("id_token");
+    var token = document.createElement("id_token");
     id.setAttribute("value", id_token);
-    console.log(id);
+    console.log(token);
     document.getElementById("loginForm").submit();
 }
 

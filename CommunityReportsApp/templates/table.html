@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Reports</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Report</h2>
+          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>DateTime</th>
+        <th>Location</th>
+        <th>Incident</th>
+        <th>Description</th>
+        <th>Anonymous</th>
+        <th>    </th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in reports %}
+      <tr>
+        {% for item in Rx eport %}
+        <td>{{ item.event_dt }}</td>
+        <td>{{ item.latitude }}{{ item.longtitude }}</td>
+        <td>{{ item.isEmergency}}</td>
+        <td>{{ item.text }}</td>
+        {% if item.isAnonymous %}
+        <td class="danger">{{ item.isAnonymous }}</td>  
+        {% else %}
+        <td>{{ item.isAnonymous }}</td>
+        {% endif %}
+        {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
