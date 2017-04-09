@@ -27,7 +27,7 @@
     <tbody>
     {% for item in reports %}
         {% if (item.isEmergency) %}
-        <tr class="emergency">
+        <tr class="bg-danger">
         {% else %}
         <tr>
         {% endif %}
@@ -49,25 +49,7 @@
                 <div class="show-more">
                     <a href="#">Show more</b>
                 </div>
-                <script>
 
-                    $(".show-more a").on("click", function() {
-                        console.log("TEST");
-                        var $this = $(this);
-                        var $content = $this.parent().prev("div.content");
-                        var linkText = $this.text().toUpperCase();
-
-                        if(linkText === "SHOW MORE"){
-                            linkText = "Show less";
-                            $content.addClass("showContent").removeClass("hideContent");
-                        } else {
-                            linkText = "Show more";
-                            $content.addClass("hideContent").removeClass("showContent");
-                        };
-
-                        $this.text(linkText);
-                    });
-                </script>
 
             </td>
 
@@ -96,6 +78,22 @@
     $('#thisTable').remove();
   }
 });
+    $(".show-more a").on("click", function() {
+        console.log("TEST");
+        var $this = $(this);
+        var $content = $this.parent().prev("div.content");
+        var linkText = $this.text().toUpperCase();
+
+        if(linkText === "SHOW MORE"){
+            linkText = "Show less";
+            $content.addClass("showContent").removeClass("hideContent");
+        } else {
+            linkText = "Show more";
+            $content.addClass("hideContent").removeClass("showContent");
+        };
+
+        $this.text(linkText);
+    });
 </script>
 
 </body>
