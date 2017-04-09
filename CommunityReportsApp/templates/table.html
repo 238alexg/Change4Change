@@ -48,6 +48,17 @@
     .navbar-nav  li a:hover {
       color: #1abc9c !important;
     }
+    .roundedCorn {
+      border-radius: 8px;
+    }
+    .lefties {
+        display: inline;
+        float: left;
+    }
+    .righties {
+        display: inline;
+        float: right;
+    }
   </style>
 </head>
 <body>
@@ -82,8 +93,8 @@
         {% else %}
         <tr style="background-color: rgba(138, 130, 130, 0.5);">
         {% endif %}
-            <td>
-                <div class="content hideContent" style="padding-left: 15px;"> {{ item.text }}
+            <td class="roundedCorn">
+                <div class="lefties content hideContent" style="padding-left: 15px;"> {{ item.text }}
                     <ul>
                         <br>
                         <li>Time: {{ item.event_dt.strftime('%m/%d/%Y %H:%M') }}</li>
@@ -95,15 +106,13 @@
                         {% endif %}
                     </ul>
                 </div>
-                <div class="show-more">
+                <div class="lefties show-more">
                     <a href="#">Show more</b>
                 </div>
-
-            </td>
-            <td> <form type="hidden" action = "/deleteReport" method="POST">
-                <input type="hidden" value="{{item.id}}" name="id"></input>
-                <input type="submit" value="X" class="btn btn-danger btn-circle delete-row" href="#" ></input>
-                </form> </td>
+                <div class="righties"><form type="hidden" action = "/deleteReport" method="POST">
+                    <input type="hidden" value="{{item.id}}" name="id"></input>
+                    <input type="submit" value="X" class="btn btn-danger btn-circle delete-row" href="#" ></input>
+                </form></div> </td>
         </tr>
 
 
