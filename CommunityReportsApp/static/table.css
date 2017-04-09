@@ -1,3 +1,19 @@
 tr.emergency {
-    background-color: rgb(255,0,0)
+    background-color: rgba(255,0,0, 0.7);
+}
+
+.hideContent {
+    overflow: hidden;
+    line-height: 1em;
+    height: 2em;
+}
+
+.showContent {
+    line-height: 1em;
+    height: auto;
+}
+
+.show-more {
+    padding: 10px 0;
+    text-align: center;
 }

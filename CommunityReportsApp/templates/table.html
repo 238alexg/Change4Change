@@ -30,7 +30,7 @@
         {% if (item.isEmergency) %}
         <tr class="emergency">
         {% else %}
-        <tr>
+        <tr data-toggle="collapse" data-target="#accordion">
         {% endif %}
             <td>{{ item.event_dt }}</td>
             {% if (item.isEmergency) %}
@@ -38,7 +38,19 @@
             {% else %}
                 <td>idgaf</td>
             {% endif %}
-            <td>{{ item.text }}</td>
+            <td>
+                <div> class="content hideContent">{{ item.text }}
+                    <p>Some more text</p>
+                    <ul>
+                        <li>Some more text</li>
+                        <li>Some more text</li>
+                        <li>Some more text</li>
+                    </ul>
+                </div>
+            </td>
+            <div class="show-more">
+                <a href="#">Show more</a>
+            </div>
             {% if (item.isAnonymous) %}
                 <td>ANONYMOUS</td>
             {% else %}
