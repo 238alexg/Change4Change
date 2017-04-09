@@ -193,7 +193,7 @@
       <p>Using EugChange takes away the incentives driving dense concentrations of panhandlers in lively pedestrian areas such as downtown. It also provides an easy way to support experienced providers of services to people in need, document your real-time giving for tax purposes, and make sure your money will help improve lives.</p>
     </div>
     <div class="col-sm-1"></div>
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <a href="#myNavbar" id="myBtn" title="Go to top">Top</a>
     <script>
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function() {scrollFunction()};
@@ -204,6 +204,11 @@
         } else {
             document.getElementById("myBtn").style.display = "none";
         }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     }
     </script>
   </div>
@@ -236,7 +241,7 @@
       <img src="../static/img/house.svg" alt="Pic 3" class="car-img">
     </div>
     <div class="item">
-      <img src="../static/img/teaching.svg" alt="Pic 4" class="car-img">
+      <img src="../static/img/teaching.svg" alt="Pic 4" class="car-img" >
     </div>
   </div>
 
