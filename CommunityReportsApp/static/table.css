@@ -1,4 +1,4 @@
-table.active, tr:hover {
+table.table, tr:hover {
     background-color: #ddd;
 }
 
