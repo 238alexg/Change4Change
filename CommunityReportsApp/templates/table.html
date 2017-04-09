@@ -58,7 +58,11 @@
             {% else %}
                 <td>PUBLIC</td>
             {% endif %}
-            <td> <form type="hidden" action = "/deleteReport" method="POST"> <input type="submit" class="btn btn-danger btn-circle delete-row" href="#" ><i class="glyphicon glyphicon-remove">{{item.id}}</form> </td>
+            <td> <form type="hidden" action = "/deleteReport" method="POST">
+                <input type="submit" class="btn btn-danger btn-circle delete-row" href="#" >
+                <i class="glyphicon glyphicon-remove">
+                    {{item.id}}</i>
+                </form> </td>
         </tr>
 
 
