@@ -49,11 +49,9 @@ def login():
 
 		session['token'] = token
 
-		#return redirect("/report")
-		return render_template('error.html', error="LOGIN ERROR!")
+		return redirect("/report")
 	else:
 		return render_template('signIn.html')
-		#return render_template('error.html', error="LOGIN ERROR!")
 
 @app.route("/", methods=['GET','POST'])
 @app.route("/report", methods=['GET','POST'])
@@ -92,8 +90,7 @@ def report():
 			# Render report page with report confirmation
 			return render_template('map.html', success = True)
 	else:
-	    return render_template('error.html', error="LOGIN ERROR!")
-		#return redirect('/login')
+		return redirect('/login')
 
 @app.route("/testReports", methods=['GET','POST'])
 def testReports():
