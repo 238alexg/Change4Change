@@ -90,33 +90,34 @@ def getMarkers():
 
 @app.route("/_submitReport")
 def submitReport():
-	text = request.args.get('description', 0, type=str)
-	isEmergency = request.args.get('isEmergency',0, type=bool)
-	isAnonymous = request.args.get('anonymous', 0, type=bool)
-	latitude = request.args.get('lat', 0, type=float)
-	longitude = request.args.get('long', 0, type=float)
+	return jsonify(result = "Hello")
 
-	user = User.query.filter(User.token == session["token"])
+	# text = request.args.get('description', 0, type=str)
+	# isEmergency = request.args.get('isEmergency',0, type=bool)
+	# isAnonymous = request.args.get('anonymous', 0, type=bool)
+	# latitude = request.args.get('lat', 0, type=float)
+	# longitude = request.args.get('long', 0, type=float)
 
-	if (user == None):
-		return render_template('error.html', error="No user in system!")
+	# user = User.query.filter(User.token == session["token"])
 
-	newReport = Report(
-		latitude = latitude,
-		longitude = longitude,
-		event_dt = datetime.now(),
-		text = text,
-		isEmergency = isEmergency,
-		isAnonymous = isAnonymous,
-		user = user,
-		human_time = str(arrow.get(datetime.now()).humanize())
-	)
+	# if (user == None):
+	# 	return render_template('error.html', error="No user in system!")
 
-	db.session.add(newReport)
-	db.session.commit()
+	# newReport = Report(
+	# 	latitude = latitude,
+	# 	longitude = longitude,
+	# 	event_dt = datetime.now(),
+	# 	text = text,
+	# 	isEmergency = isEmergency,
+	# 	isAnonymous = isAnonymous,
+	# 	user = user,
+	# 	human_time = str(arrow.get(datetime.now()).humanize())
+	# )
 
-	return render_template('error.html', error = newReport)
-	#return jsonify(result = True)
+	# db.session.add(newReport)
+	# db.session.commit()
+
+	# return jsonify(result = True)
 
 
 @app.route("/deleteReport", methods=['POST'])
