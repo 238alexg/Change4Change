@@ -1,17 +1,17 @@
-# Change4Change
+# EUGChange
 
-## Description 
-Change4Change is a secure alternative to giving to panhandlers.
+## Description:
+EUGChange is a secure alternative to giving money to panhandlers.
 
 ## Link: 
 http://change4change.pythonanywhere.com/ <br/>
 
-## Team Members <br/>
-Chris Brooks <br/>
-Alex Geoffrey <br/>
-Jeffrey Knees <br/>
-Daniel Su <br/>
-Brandon Sov<br/>
+## Team Members: <br/>
+Chris Brooks cbrooks4@uoregon.edu<br/>
+Alex Geoffrey apg@uorgeon.edu<br/>
+Jeffrey Knees jknees@uoregon.edu<br/>
+Daniel Su dsu@uoregon.edu<br/>
+Brandon Sov b.r.a.n.d.o.n.s.o.v@gmail.com<br/>
 <br/>
 
 ## Installation (to be viewed locally)
