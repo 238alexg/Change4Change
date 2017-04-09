@@ -49,7 +49,7 @@ def login():
 
 		return redirect("/report")
 	else:
-        return render_template('signIn.html')
+		return render_template('signIn.html')
 
 @app.route("/", methods=['GET','POST'])
 @app.route("/report", methods=['GET','POST'])
