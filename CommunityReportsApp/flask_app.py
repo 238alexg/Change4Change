@@ -82,6 +82,7 @@ def report():
 				isEmergency = isEmergency,
 				isAnonymous = isAnonymous,
 				user = user
+				human_time = str(arrow.get(datetime.now()).humanize())
 			)
 
 			db.session.add(newReport)
@@ -134,6 +135,7 @@ def submitReport():
 		isEmergency = isEmergency,
 		isAnonymous = isAnonymous,
 		user = user
+		human_time = str(arrow.get(datetime.now()).humanize())
 	)
 
 	db.session.add(newReport)
@@ -173,6 +175,10 @@ class Report(db.Model):
 	isAnonymous = db.Column(db.Boolean)
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 	user = db.relationship("User", back_populates="reports")
+	human_time = db.Column(db.String(4096))
+
+	def humanize_time(self):
+        self.event_dt = arrow.get(event_dt).humanize()
 
 # Model for users
 class User(db.Model):
