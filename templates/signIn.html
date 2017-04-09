@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>LOOK!-----></title>
+		<title>LOOK!</title>
 		<meta name="viewport" content="initial-scale=1.0">
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="../static/mapStyle.css">
@@ -26,16 +26,16 @@
       color: #fff;
     }
     .bg-1 {
-        background-color: rgba(81, 145, 205, 0.45); /* Blue */
+        background-color: rgba(184, 204, 110, 0.95); /* Blue */
         color: #ffffff;
         height: 100%;
     }
     .img-1 {
-      background: url("../static/img/city.jpg");
+      background: url("../static/img/map_img.png");
       position: relative;
       background-repeat: no-repeat;
       background-size: cover;
-      background-position: 0% 100%;
+      background-position: 50% 50%;
       height: 100%;
       overflow-y: none;
     }
@@ -144,13 +144,19 @@
     	background-image: -ms-linear-gradient(left, #474e5d, #D0D0D0, #474e5d);
     	background-image: -o-linear-gradient(left, #474e5d, #D0D0D0, #474e5d); 
   	}
+  	.g-signin2 {
+  		width: 100%;
+  	}
+  	.g-signin2 > div {
+  		margin: 0 auto;
+  	}
   </style>
 	</head>
 	<body>
 	<div class='img-1'>
 	  <div class="container-fluid bg-1 text-center">
-	    <h2 style="margin-bottom: 5%; font-size: 6vmin; margin-top: 0px;">Sign in</h2>
-	    <form id="loginForm" method="post" action="/">
+	    <h2 style="margin-bottom: 5%; font-size: 6vmin; margin-top: 0px; color: #E4F8FF;">Look!</h2>
+	    <form id="loginForm" method="post" action="/login">
         	<div class="g-signin2" data-onsuccess="onSignIn"></div>
         	<meta name="google-signin-client_id" content="752679559060-aau2hf5upuvgnb9k7rd5h6huip2rdcbd.apps.googleusercontent.com">
 			<input type="hidden" name="token" id="token" value="">

@@ -1,6 +1,6 @@
 # communityReportsApp.py
 
-from flask import Flask, request, jsonify, session, render_template
+from flask import Flask, request, redirect, jsonify, session, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 from datetime import datetime
@@ -32,10 +32,12 @@ db = SQLAlchemy(app)
 ### Routes  ###
 ###############
 
-@app.route("/", methods=['GET','POST'])
+@app.route("/login", methods=['GET','POST'])
 def login():
+	if (session.get('token')):
+		return redirect("/report")
 	# User is trying to log in to Google
-	if (request.method == 'POST'):
+	elif (request.method == 'POST'):
 		token = request.form.get('token')
 
 		user = User.query.filter(User.token == token)
@@ -44,47 +46,52 @@ def login():
 			db.session.add(newUser)
 			db.session.commit()
 			user = User.query.filter(User.token == token)
-		
+
 		session['token'] = token
 
-		return render_template('error.html', error = "You are logged in!")
+		return redirect("/report")
+	else:
+		return render_template('signIn.html')
 
-	return render_template('signIn.html')
-
+@app.route("/", methods=['GET','POST'])
 @app.route("/report", methods=['GET','POST'])
 def report():
-	# If user is directed to the report page
-	if (request.method == 'GET'):
-		return render_template('map.html')
-	# If the user has posted a report form
+	if (session.get('token')):
+		# If user is directed to the report page
+		if (request.method == 'GET'):
+			return render_template('map.html')
+		# If the user has posted a report form
+		else:
+			latitude = request.form.get('latitude')
+			longitude = request.form.get('longitude')
+			reportText = request.form.get('reportText')
+			isEmergency = request.form.get('isEmergency')
+			isAnonymous = request.form.get('anonymous')
+
+			user = User.query.filter(User.token == session["token"])
+
+			if (user == None):
+				return render_template('error.html', error="No user in system!")
+
+			# Create new report row
+			newReport = Report(
+				latitude = latitude,
+				longitude = longitude,
+				event_dt = datetime.now(),
+				text = reportText,
+				isEmergency = isEmergency,
+				isAnonymous = isAnonymous,
+				user = user,
+				human_time = str(arrow.get(datetime.now()).humanize())
+			)
+
+			db.session.add(newReport)
+			db.session.commit()
+
+			# Render report page with report confirmation
+			return render_template('map.html', success = True)
 	else:
-		latitude = request.form.get('latitude')
-		longitude = request.form.get('longitude')
-		reportText = request.form.get('reportText')
-		isEmergency = request.form.get('isEmergency')
-		isAnonymous = request.form.get('isAnonymous')
-
-		user = User.query.filter(User.token == session["token"])
-
-		if (user == None):
-			return render_template('error.html', error="No user in system!")
-
-		# Create new report row
-		newReport = Report(
-			latitude = latitude,
-			longitude = longitude,
-			event_dt = datetime.now(),
-			text = reportText,
-			isEmergency = isEmergency,
-			isAnonymous = isAnonymous,
-			user = user
-		)
-
-		db.session.add(newReport)
-		db.session.commit()
-
-		# Render report page with report confirmation
-		return render_template('map.html', success = True)
+		return redirect('/login')
 
 @app.route("/testReports", methods=['GET','POST'])
 def testReports():
@@ -107,6 +114,35 @@ def getMarkers():
 	return jsonify(result = data)
 
 
+@app.route("/_submitReport")
+def submitReport():
+	text = request.args.get('description', 0, type=str)
+	isEmergency = request.args.get('type',0, type=bool)
+	isAnonymous = request.args.get('anonymous', 0, type=bool)
+	latitude = request.args.get('lat', 0, type=float)
+	longitude = request.args.get('long', 0, type=float)
+
+	user = User.query.filter(User.token == session["token"])
+
+	if (user == None):
+		return render_template('error.html', error="No user in system!")
+
+	newReport = Report(
+		latitude = latitude,
+		longitude = longitude,
+		event_dt = datetime.now(),
+		text = text,
+		isEmergency = isEmergency,
+		isAnonymous = isAnonymous,
+		user = user,
+		human_time = str(arrow.get(datetime.now()).humanize())
+	)
+
+	db.session.add(newReport)
+	db.session.commit()
+
+	return jsonify(result = True)
+
 @app.route("/mapFile")
 def mapFile():
 	return render_template('map.html')
@@ -115,6 +151,12 @@ def mapFile():
 def signIn():
 	return render_template('signIn.html')
 
+@app.route("/deleteReport", methods=['POST'])
+def deleteReport():
+	reportID = request.form.get('id')
+	Report.query.filter_by(id=reportID).delete()
+	db.session.commit()
+	return redirect('/testReports')
 
 ###############
 ### Models  ###
@@ -133,6 +175,10 @@ class Report(db.Model):
 	isAnonymous = db.Column(db.Boolean)
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 	user = db.relationship("User", back_populates="reports")
+	human_time = db.Column(db.String(4096))
+
+	def humanize_time(self):
+        self.event_dt = arrow.get(event_dt).humanize()
 
 # Model for users
 class User(db.Model):
