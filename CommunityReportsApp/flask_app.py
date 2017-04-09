@@ -54,41 +54,43 @@ def login():
 @app.route("/", methods=['GET','POST'])
 @app.route("/report", methods=['GET','POST'])
 def report():
-	if (session['token']):
-		# If user is directed to the report page
-		if (request.method == 'GET'):
-			return render_template('map.html')
-		# If the user has posted a report form
-		else:
-			latitude = request.form.get('latitude')
-			longitude = request.form.get('longitude')
-			reportText = request.form.get('reportText')
-			isEmergency = request.form.get('isEmergency')
-			isAnonymous = request.form.get('anonymous')
+	return render_template('error.html', error=session['token'])
 
-			user = User.query.filter(User.token == session["token"])
+	# if (session['token']):
+	# 	# If user is directed to the report page
+	# 	if (request.method == 'GET'):
+	# 		return render_template('map.html')
+	# 	# If the user has posted a report form
+	# 	else:
+	# 		latitude = request.form.get('latitude')
+	# 		longitude = request.form.get('longitude')
+	# 		reportText = request.form.get('reportText')
+	# 		isEmergency = request.form.get('isEmergency')
+	# 		isAnonymous = request.form.get('anonymous')
 
-			if (user == None):
-				return render_template('error.html', error="No user in system!")
+	# 		user = User.query.filter(User.token == session["token"])
 
-			# Create new report row
-			newReport = Report(
-				latitude = latitude,
-				longitude = longitude,
-				event_dt = datetime.now(),
-				text = reportText,
-				isEmergency = isEmergency,
-				isAnonymous = isAnonymous,
-				user = user
-			)
+	# 		if (user == None):
+	# 			return render_template('error.html', error="No user in system!")
 
-			db.session.add(newReport)
-			db.session.commit()
+	# 		# Create new report row
+	# 		newReport = Report(
+	# 			latitude = latitude,
+	# 			longitude = longitude,
+	# 			event_dt = datetime.now(),
+	# 			text = reportText,
+	# 			isEmergency = isEmergency,
+	# 			isAnonymous = isAnonymous,
+	# 			user = user
+	# 		)
 
-			# Render report page with report confirmation
-			return render_template('map.html', success = True)
-	else:
-		return redirect('/login')
+	# 		db.session.add(newReport)
+	# 		db.session.commit()
+
+	# 		# Render report page with report confirmation
+	# 		return render_template('map.html', success = True)
+	# else:
+	# 	return redirect('/login')
 
 @app.route("/testReports", methods=['GET','POST'])
 def testReports():
