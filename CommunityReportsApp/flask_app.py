@@ -69,7 +69,7 @@ def report():
 @app.route("/testReports", methods=['GET','POST'])
 def testReports():
 	if (session.get('token')):
-		user = User.query.filter_by(id=session['token']).first()
+		user = User.query.filter_by(token=session['token']).first()
 		reports = Report.query.filter_by(user=user).all()
 		return render_template('table.html', reports = reports)
 	else:
