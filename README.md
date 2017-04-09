@@ -37,6 +37,5 @@ Brandon Sov b.r.a.n.d.o.n.s.o.v@gmail.com<br/>
 virtualenv env
 source env/bin/activate
 pip install -r requirements.txt
-pip install flask
 python3 app.py
 ```
