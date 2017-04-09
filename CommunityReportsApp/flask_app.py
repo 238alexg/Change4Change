@@ -91,7 +91,10 @@ def report():
 @app.route("/testReports", methods=['GET','POST'])
 def testReports():
 	reports = Report.query.all()
-	return render_template('table.html', reports = reports)
+	try:
+		return render_template('table.html', reports = reports)
+	except BaseException as e:
+		return e
 
 @app.route("/mapFile")
 def mapFile():
