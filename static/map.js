@@ -60,7 +60,7 @@ function initMap(){
         createWindow(e);
     });
 
-    addMarkers();
+    //addMarkers();
 }
 
 function createWindow(e) {
@@ -76,13 +76,13 @@ function createWindow(e) {
     console.log("Latitude: " + latitude +'\n' +"Longitude: " + longitude);
     
     infowindow = new google.maps.InfoWindow;
-     var formData = document.getElementById('form');
+    var formData = document.getElementById('form');
     infowindow.setContent(formData);
     infowindow.open(map, marker);
-    google.maps.event.addListener(infowindow,'closeclick',function(){
+    google.maps.event.addListener(infowindow,'click',function(){
         window.location.reload();
-   // then, remove the infowindows name from the array
-});
+    // then, remove the infowindows name from the array
+    });
 
 }
 
@@ -99,8 +99,8 @@ function addMarkers() {
         };
 
     var markersOld = [
-        [ 44.052, -123.086, "a test","event"],
-        [ 44.032, -123.087, "a test2","crime"]
+        [ 44.052, -123.086, "a test","event",5],
+        [ 44.032, -123.087, "a test2","crime",10]
     ];
     /*var locations = [];
     for(i = 0; i < markersOld.length; i++)
@@ -122,11 +122,18 @@ function addMarkers() {
      var infoWindow = new google.maps.InfoWindow(), marker, i;
      for( i = 0; i < markersOld.length; i++ ) {
         var position = new google.maps.LatLng(markersOld[i][0], markersOld[i][1]);
-        //bounds.extend(position);
+        var animation;
+        if(markersOld[i][4]<6){
+            animation = google.maps.Animation.BOUNCE;
+        }
+        else{
+            animation = null;
+        }
         marker = new google.maps.Marker({
             position: position,
             map: map,
-            icon: icons[markersOld[i][3]].icon
+            icon: icons[markersOld[i][3]].icon,
+            animation: animation
         });
         
         // Allow each marker to have an info window    
@@ -134,6 +141,7 @@ function addMarkers() {
             return function() {
                 infoWindow.setContent(markersOld[i][2]);
                 infoWindow.open(map, marker);
+                marker.setAnimation(null);
             }
         })(marker, i));
 
