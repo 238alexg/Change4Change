@@ -18,26 +18,26 @@
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYk3h5SFMD7YThRHX50g8uZYmPmoqLjnU&callback=initMap"
 		async defer></script>
-
-		<div id="form" type="hidden">
-			<table>
-			<input type="hidden" id="lat">
-			<input type="hidden" id="long">
-			<tr>
-			    <td><b>Report: </b>
-			    <input type='text' id='description'/> </td> 
-			</tr>
-			<tr>
-			    <td><b>Emergency </b>
-			    <input type="checkbox" name="type" id="isEmergency">
-			    <b>Anonymous</b>
-			    <input type="checkbox" name="anon" id="anon"></td>
-			</tr>
-			<tr><td></td><td><input id='myBtn' type='button' value='Save'></td></tr>
-			</table>
-		</div>
-    <div id="message" type="hidden">Location saved</div>
-
+        <div style="display: none;">
+		    <div id="form">
+			    <table>
+			    <input type="hidden" id="lat">
+			    <input type="hidden" id="long">
+			    <tr>
+			        <td><b>Report: </b>
+			        <input type='text' id='description'/> </td> 
+			    </tr>
+			    <tr>
+			        <td><b>Emergency </b>
+			        <input type="checkbox" name="type" id="isEmergency">
+			        <b>Anonymous</b>
+			        <input type="checkbox" name="anon" id="anon"></td>
+			    </tr>
+			    <tr><td></td><td><input id='myBtn' type='button' value='Save'></td></tr>
+			    </table>
+		    </div>
+        <div id="message" type="hidden">Location saved</div>
+    </div>
 
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-client_id" content="494678703644-ufofnmrub4m7dm8cn1lo394huo4sqb79.apps.googleusercontent.com">
