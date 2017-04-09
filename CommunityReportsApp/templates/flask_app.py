@@ -34,13 +34,6 @@ db = SQLAlchemy(app)
 ### Routes  ###
 ###############
 
-# Test function to test database interaction
-# LATER: Will have admin authentication, then various
-#        queries to show reports.
-@app.route("/displayReports", methods=['GET','POST'])
-def displayReports():
-	results = Report.query.all()
-	return render_template('DBtest.html', results = results)
 
 @app.route("/", methods=['GET','POST'])
 def login():
@@ -97,6 +90,7 @@ def report():
 		return render_template('map.html', success = True)
 
 @app.route("/testReports", methods=['GET','POST'])
+def testReports():
 	reports = Report.query.all()
 	return render_template('table.html', reports = reports)
 

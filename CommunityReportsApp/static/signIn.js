@@ -1,7 +1,11 @@
 function onSignIn(googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
-    console.log(id_token)
-    document.getElementById("token").value = id_token;
+    console.log(id_token);
+    var tokenElement = document.getElementById("token");
+    tokenElement.value = id_token;
+
+    console.log(tokenElement.value);
+
     document.getElementById("loginForm").submit();
 }
 
