@@ -29,13 +29,13 @@
       <tr>
         <td>{{ item.event_dt }}</td>
         <td>{{ item.latitude }}{{ item.longitude }}</td>
-        {% if item.isEmergency %}
+        {% if (item.isEmergency == True) %}
         <td class="danger">{{ item.isEmergency}}</td>
         {% else %}
         <td class="success">{{ item.isEmergency}}</td>
         { % endif %}
         <td>{{ item.text }}</td>
-        {% if item.isAnonymous %}
+        {% if (item.isAnonymous == True) %}
         <td class="warning">{{ item.isAnonymous }}</td>  
         {% else %}
         <td>{{ item.isAnonymous }}</td>
