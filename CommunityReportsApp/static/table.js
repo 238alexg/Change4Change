@@ -2,8 +2,6 @@ $(".show-more a").on("click", function() {
     var $this = $(this);
     var $content = $this.parent().prev("div.content");
     var linkText = $this.text().toUpperCase();
-    console.log("TEST");
-    console.log(linkText);
 
     if(linkText === "SHOW MORE"){
         linkText = "Show less";
