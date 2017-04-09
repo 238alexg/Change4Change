@@ -91,23 +91,25 @@ function addMarkers() {
         [ 44.052, -123.086, "a test"],
         [ 44.032, -123.087, "a test2"]
     ];
-    var locations = [
-        {lat: 44.052,lng: -123.082},
-        {lat: 44.041,lng: -123.083}
-    ];
-    
+    /*var locations = [];
+    for(i = 0; i < markersOld.length; i++)
+    {
+        var aLoc = {lat: markersOld[i][0], lng: markersOld[i][1]};
+        locations.push(aLoc);
+    }
+
     var markers = locations.map(function(location, i) {
         return new google.maps.Marker({
             position: location
         });
-    });
+    });*/
 
     // Add a marker clusterer to manage the markers.
-    var markerCluster = new MarkerClusterer(map, markers,
+    /*var markerCluster = new MarkerClusterer(map, markers,
         {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-    
+    */
      var infoWindow = new google.maps.InfoWindow(), marker, i;
-     for( i = 0; i < markers.length; i++ ) {
+     for( i = 0; i < markersOld.length; i++ ) {
         var position = new google.maps.LatLng(markersOld[i][0], markersOld[i][1]);
         //bounds.extend(position);
         marker = new google.maps.Marker({
