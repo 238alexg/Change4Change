@@ -12,14 +12,12 @@ db.create_all()
 user1 = User(
 	token = "THISISALONGTOKEN"
 )
+
 user2 = User(
 	token = "THISISALSOALONGTOKEN"
 )
 
-db.session.add(user1)
-db.session.add(user2)
-db.commit()
-
+# Create reports
 report1 = Report(
 	latitude = 44.049228,
 	longitude = 123.092448,
@@ -50,7 +48,11 @@ report3 = Report(
 	user = user2
 )
 
+
+db.session.add(user1)
+db.session.add(user2)
 db.session.add(report1)
 db.session.add(report2)
 db.session.add(report3)
+
 db.session.commit()
