@@ -1,17 +1,24 @@
 # EUGChange
 
 ## Description:
-EUGChange is a secure alternative to giving money to panhandlers.
+EUGChange is a secure alternative to giving money to panhandlers. <br/>
 
-## Link: 
+## Technologies used: <br/>
+Paypal API
+
+## Link:
 http://eugchange.pythonanywhere.com/ <br/>
-<br/>
 
 
 # Downtown Safety App
 
-## Description:
-The purpose of this application is to provide a user friendly way to report incidents to alert others of potential dangers or locations of interest.
+## Description:<br/>
+The purpose of this application is to provide a user friendly way to report
+incidents to alert others of potential dangers or locations of interest.
+
+## Technologies used:<br/>
+Google Maps API<br/>
+Google Auth Sign In
 
 ## Link:
 http://change4change.pythonanywhere.com/ <br/>
