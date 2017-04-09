@@ -43,14 +43,20 @@ def displayReports():
 
 @app.route("/", methods=['GET','POST'])
 def login():
-	# User is accessing the login page
-	if (request.method == 'GET'):
-		return render_template('login.html')
 	# User is trying to log in to Google
-	else:
+	if (request.method == 'POST'):
 		token = request.form.get('token')
-		# LATER: save token to session for reports
+		user = Users.query.filter(User.token == token)
 
+		if (user == None):
+			newUser = User(token = token)
+			db.session.add(newUser)
+			db.session.commit()
+			user = Users.query.filter(User.token == token)
+
+		session['token'] = token
+
+	return render_template('signIn.html')
 
 @app.route("/report", methods=['GET','POST'])
 def report():
@@ -66,6 +72,9 @@ def report():
 		isAnonymous = request.form.get('isAnonymous')
 
 		user = User.query.filter(User.token == session["token"])
+
+		if (user == None):
+			return render_template('error.html', error="No user in system!")
 
 		# Create new report row
 		newReport = Report(
@@ -112,7 +121,7 @@ class User(db.Model):
 	__tablename__ = "users"
 	id = db.Column(db.Integer, primary_key = True)
 
-	token = db.Column(db.String(1024))
+	token = db.Column(db.String(1024), unique = True)
 	reports = relationship("Report", back_populates="user")
 
 
