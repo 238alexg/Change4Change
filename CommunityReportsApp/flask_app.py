@@ -40,18 +40,18 @@ def login():
 	elif (request.method == 'POST'):
 		token = request.form.get('token')
 
-		user = User.query.filter(User.token == token).first()
+		user = User.query.filter_by(User.token == token).first()
 
 		if (user == None):
 			newUser = User(token = token)
 			db.session.add(newUser)
 			db.session.commit()
-			user = User.query.filter(User.token == token).first()
+			user = User.query.filter_by(User.token == token).first()
 			return render_template('error.html', error = user)
 		elif (user != None):
 			return render_template('error.html', error = user)
 
-		session['token'] = token
+		session['token'] = user.token
 
 		return redirect("/report")
 	else:
