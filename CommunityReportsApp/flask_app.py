@@ -96,7 +96,10 @@ def submitReport():
 	latitude = request.args.get('lat', 0, type=float)
 	longitude = request.args.get('long', 0, type=float)
 
-	user = User.query.filter(User.token == session["token"])
+	if (!session['token']):
+		return jsonify(result = "NO TOKEN")
+
+	user = User.query.filter(User.token == session["token"]).first()
 
 	if (user == None):
 		return jsonify(result = "NO USER")
