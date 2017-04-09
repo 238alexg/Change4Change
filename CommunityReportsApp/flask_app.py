@@ -40,12 +40,16 @@ def login():
 	elif (request.method == 'POST'):
 		token = request.form.get('token')
 
-		user = User.query.filter(User.token == token)
+		user = User.query.filter(User.token == token).first()
+
 		if (user == None):
 			newUser = User(token = token)
 			db.session.add(newUser)
 			db.session.commit()
-			user = User.query.filter(User.token == token)
+			user = User.query.filter(User.token == token).first()
+			return render_template('error.html', error = user)
+		elif (user != None):
+			return render_template('error.html', error = user)
 
 		session['token'] = token
 
@@ -95,9 +99,6 @@ def submitReport():
 	isAnonymous = request.args.get('anonymous', 0, type=bool)
 	latitude = request.args.get('lat', 0, type=float)
 	longitude = request.args.get('long', 0, type=float)
-
-	if (!session['token']):
-		return jsonify(result = "NO TOKEN")
 
 	user = User.query.filter(User.token == session["token"]).first()
 
