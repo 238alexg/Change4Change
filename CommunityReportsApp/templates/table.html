@@ -12,7 +12,7 @@
 
 <div class="container">
   <h2>Report</h2>
-          
+
   <table class="table">
     <thead>
       <tr>
@@ -29,16 +29,16 @@
       <tr>
         <td>{{ item.event_dt }}</td>
         <td>{{ item.latitude }}{{ item.longitude }}</td>
-        {% if item.isEmergency %}
-        <td class="danger">{{ item.isEmergency}}</td>
+        {% if (item.isEmergency) %}
+            <td style="color:red;">EMERGENCY!</td>
         {% else %}
-        <td class="success">{{ item.isEmergency}}</td>
-        { % endif %}
+            <td>idgaf</td>
+        {% endif %}
         <td>{{ item.text }}</td>
-        {% if item.isAnonymous %}
-        <td class="warning">{{ item.isAnonymous }}</td>  
+        {% if (item.isAnonymous) %}
+            <td class="success">ANONYMOUS</td>
         {% else %}
-        <td>{{ item.isAnonymous }}</td>
+            <td class="warning">PUBLIC</td>
         {% endif %}
       </tr>
     {% endfor %}
