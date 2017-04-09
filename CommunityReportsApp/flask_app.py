@@ -20,10 +20,10 @@ app.logger.setLevel(logging.DEBUG)
 
 # Database Globals
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-    username="change4change",
-    password="noSleep69",
-    hostname="change4change.mysql.pythonanywhere-services.com",
-    databasename="change4change$reports",
+	username="change4change",
+	password="noSleep69",
+	hostname="change4change.mysql.pythonanywhere-services.com",
+	databasename="change4change$reports",
 )
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
@@ -39,8 +39,8 @@ db = SQLAlchemy(app)
 #        queries to show reports.
 @app.route("/displayReports", methods=['GET','POST'])
 def displayReports():
-    results = Report.query.all()
-    return render_template('DBtest.html', results = results)
+	results = Report.query.all()
+	return render_template('DBtest.html', results = results)
 
 @app.route("/", methods=['GET','POST'])
 def login():
@@ -48,16 +48,19 @@ def login():
 	if (request.method == 'POST'):
 		token = request.form.get('token')
 		print(token)
-		return render_template('map.html')
-		user = Users.query.filter(User.token == token)
 
-		if (user == None):
-			newUser = User(token = token)
-			db.session.add(newUser)
-			db.session.commit()
-			user = Users.query.filter(User.token == token)
+		return render_template('error.html', error = token)
 
-		session['token'] = token
+		# user = User.query.filter(User.token == token)
+		# if (user == None):
+		# 	newUser = User(token = token)
+		# 	db.session.add(newUser)
+		# 	db.session.commit()
+		# 	user = User.query.filter(User.token == token)
+		#
+		# session['token'] = token
+
+
 
 	return render_template('signIn.html')
 
@@ -65,7 +68,7 @@ def login():
 def report():
 	# If user is directed to the report page
 	if (request.method == 'GET'):
-		return render_template('report.html')
+		return render_template('map.html')
 	# If the user has posted a report form
 	else:
 		latitude = request.form.get('latitude')
@@ -94,17 +97,17 @@ def report():
 		db.session.commit()
 
 		# Render report page with report confirmation
-		return render_template('report.html', success = True)
+		return render_template('map.html', success = True)
 
 
 
 @app.route("/mapFile")
 def mapFile():
-    return flask.render_template('map.html')
+	return flask.render_template('map.html')
 
 @app.route("/signIn")
 def signIn():
-    return flask.render_template('signIn.html')
+	return flask.render_template('signIn.html')
 
 
 ###############
@@ -135,8 +138,4 @@ class User(db.Model):
 
 
 if __name__ == "__main__":
-    import uuid
-    app.secret_key = str(uuid.uuid4())
-    app.debug = CONFIG.DEBUG
-    app.logger.setLevel(logging.DEBUG)
-    app.run(port=CONFIG.PORT,threaded=True)
+	app.run(port=CONFIG.PORT,threaded=True)
