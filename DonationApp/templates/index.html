@@ -15,6 +15,7 @@
       line-height: 1.8;
       color: #f5f6f7;
     }
+    html, body {height: 100%;}
     p {font-size: 16px;}
     .margin {margin-bottom: 45px;}
     .bg-0 {
@@ -24,6 +25,7 @@
     .bg-1 {
         background-color: rgba(81, 145, 205, 0.45); /* Blue */
         color: #ffffff;
+        height: 100%;
     }
     .img-1 {
       background: url("../static/img/city.jpg");
@@ -31,6 +33,8 @@
       background-repeat: no-repeat;
       background-size: cover;
       background-position: 0% 100%;
+      height: 100%;
+      overflow-y: none;
     }
     .bg-2 {
         background-color: #474e5d; /* Dark Blue */
@@ -122,6 +126,23 @@
     margin-top: 30px;
     padding-top: 10px;
   }
+  hr.style14 { 
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #F0F0F0, #D0D0D0, #F0F0F0);
+    background-image: -moz-linear-gradient(left, #F0F0F0, #D0D0D0, #F0F0F0);
+    background-image: -ms-linear-gradient(left, #F0F0F0, #D0D0D0, #F0F0F0);
+    background-image: -o-linear-gradient(left, #F0F0F0, #D0D0D0, #F0F0F0); 
+  }
+  hr.style14 {
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #474e5d, #D0D0D0, #474e5d);
+    background-image: -moz-linear-gradient(left, #474e5d, #D0D0D0, #474e5d);
+    background-image: -ms-linear-gradient(left, #474e5d, #D0D0D0, #474e5d);
+    background-image: -o-linear-gradient(left, #474e5d, #D0D0D0, #474e5d); 
+  }
+  }
   </style>
 </head>
 <body>
@@ -171,23 +192,24 @@
       src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
 
     </form>
-    <p style="margin-right: 25%; margin-left: 25%; font-size: 2.5vmin; margin-bottom: 5%;">EUGChange is a secure alternative to giving to panhandlers.</p>
+    <p style="margin-right: 25%; margin-left: 25%; font-size: 3vmin; margin-bottom: 5%;">EUGChange is a secure alternative to giving to panhandlers.</p>
   </div>
 </div>
 
 <!-- Second Container (Grid) -->
 <div id="aboutSect" class="container-fluid bg-3 text-center">
-  <h2 >About</h2><br>
+  <h2 >About</h2>
+  <hr class="style14">
   <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-4">
     <h3>What?</h3>
-      <p>Many of us are uncomfortable giving money to panhandlers, but really want to help people in need. EUGChange sends your gift to a dedicated fund at St. Vincent de Paul, providing direct service to homeless residents and helping you give wisely on the go.</p>
+      <p style="text-align: left;">Many of us are uncomfortable giving money to panhandlers, but really want to help people in need. EUGChange sends your gift to a dedicated fund at St. Vincent de Paul, providing direct service to homeless residents and helping you give wisely on the go.</p>
     </div>
     <div class="col-sm-2"></div>
     <div class="col-sm-4">
     <h3>Why?</h3>
-      <p>Using EUGChange takes away the incentives driving dense concentrations of panhandlers in lively pedestrian areas such as downtown. It also provides an easy way to support experienced providers of services to people in need, document your real-time giving for tax purposes, and make sure your money will help improve lives.</p>
+      <p style="text-align: left;">Using EUGChange takes away the incentives driving dense concentrations of panhandlers in lively pedestrian areas such as downtown. It also provides an easy way to support experienced providers of services to people in need, document your real-time giving for tax purposes, and make sure your money will help improve lives.</p>
     </div>
     <div class="col-sm-1"></div>
     <a href="#myNavbar" id="myBtn" title="Go to top"><b>^</b></a>
@@ -209,6 +231,7 @@
 <!-- Third Container -->
 <div id="buys" class="container-fluid bg-2 text-center">
   <h2 class="margin">What your money buys</h2>
+  <hr class="style14">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators" style="bottom: 20px">

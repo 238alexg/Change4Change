@@ -6,6 +6,8 @@
 	<body>
         <h1>Debugging page!</h1>
         <h3>Here's what you said to say:</h3>
-		<p style="color:red;">{{ error }}</p>
+        {% for report in error %}
+		<p style="color:red;">{{ report.text }}</p>
+		{% endfor %}
 	</body>
 </html>

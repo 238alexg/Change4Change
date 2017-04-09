@@ -17,6 +17,16 @@ user2 = User(
 	token = "THISISALSOALONGTOKEN"
 )
 
+db.session.add(user1)
+db.session.add(user2)
+db.session.commit()
+
+user1 = User.query.filter(User.token == "THISISALONGTOKEN").first()
+user2 = User.query.filter(User.token == "THISISALSOALONGTOKEN").first()
+
+print(user1.id)
+print(user2.id)
+
 # Create reports
 report1 = Report(
 	latitude = float(44.049228),
@@ -49,8 +59,7 @@ report3 = Report(
 )
 
 
-db.session.add(user1)
-db.session.add(user2)
+
 db.session.add(report1)
 db.session.add(report2)
 db.session.add(report3)
