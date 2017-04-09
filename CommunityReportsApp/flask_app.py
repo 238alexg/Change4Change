@@ -50,6 +50,7 @@ def login():
 			user = User.query.filter_by(token = token_frag).first()
 
 		session['token'] = user.token
+		session['id']
 
 		return redirect("/report")
 	else:
@@ -68,8 +69,8 @@ def report():
 
 @app.route("/testReports", methods=['GET','POST'])
 def testReports():
-	if (session.get('token')):
-		user = User.query.filter_by(token=session['token']).first()
+	if (session.get('id')):
+		user = User.query.filter_by(id=session['id']).first()
 		reports = Report.query.filter_by(user=user).all()
 		return render_template('table.html', reports = reports)
 	else:
