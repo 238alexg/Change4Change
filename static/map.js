@@ -1,4 +1,6 @@
-
+Date.prototype.getUnixTime = function() { return this.getTime()/1000|0 };
+if(!Date.now) Date.now = function() { return new Date(); }
+Date.time = function() { return Date.now().getUnixTime(); }
 var map;
 //#141414
 
@@ -99,8 +101,8 @@ function addMarkers() {
         };
 
     var markersOld = [
-        [ 44.052, -123.086, "a test","event",5],
-        [ 44.032, -123.087, "a test2","crime",10]
+        [ 44.052, -123.086, "a test","event",1591709677],
+        [ 44.032, -123.087, "a test2","crime",1490709677]
     ];
     /*var locations = [];
     for(i = 0; i < markersOld.length; i++)
@@ -123,7 +125,10 @@ function addMarkers() {
      for( i = 0; i < markersOld.length; i++ ) {
         var position = new google.maps.LatLng(markersOld[i][0], markersOld[i][1]);
         var animation;
-        if(markersOld[i][4]<6){
+        var theTime = new Date();
+        var theResult = theTime.getUnixTime()-markersOld[i][4];
+        console.log(theTime.getUnixTime()-markersOld[i][4]);
+        if(theResult<300){
             animation = google.maps.Animation.BOUNCE;
         }
         else{
@@ -139,7 +144,8 @@ function addMarkers() {
         // Allow each marker to have an info window    
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-                infoWindow.setContent(markersOld[i][2]);
+                infoWindow.setContent(markersOld[i][2] + "<br>"
+                + markersOld[i][3]);
                 infoWindow.open(map, marker);
                 marker.setAnimation(null);
             }
