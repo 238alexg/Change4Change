@@ -5,8 +5,8 @@
 from flask_app import Report, User, db
 from datetime import datetime
 
-#db.drop_all()
-#db.create_all()
+db.drop_all()
+db.create_all()
 
 # Create users
 user1 = User(
@@ -17,17 +17,15 @@ user2 = User(
 	token = "THISISALSOALONGTOKEN"
 )
 
-print(user1.id)
-print(user1.id)
-
-
 db.session.add(user1)
 db.session.add(user2)
 db.session.commit()
 
-user1 = User.query.filter(User.token == "THISISALONGTOKEN")
-user2 = User.query.filter(User.token == "THISISALSOALONGTOKEN")
+user1 = User.query.filter(User.token == "THISISALONGTOKEN").first()
+user2 = User.query.filter(User.token == "THISISALSOALONGTOKEN").first()
 
+print(user1.id)
+print(user2.id)
 
 # Create reports
 report1 = Report(
@@ -37,7 +35,7 @@ report1 = Report(
 	text = "This is my very first report!",
 	isEmergency = False,
 	isAnonymous = True,
-	user_id = user1.id
+	user = user1
 )
 
 report2 = Report(
@@ -47,7 +45,7 @@ report2 = Report(
 	text = "Emergency! Help!",
 	isEmergency = True,
 	isAnonymous = False,
-	user_id = user1.id
+	user = user1
 )
 
 report3 = Report(
@@ -57,7 +55,7 @@ report3 = Report(
 	text = "Positive comment, in same place as emergency",
 	isEmergency = False,
 	isAnonymous = False,
-	user_id = user2.id
+	user = user2
 )
 
 

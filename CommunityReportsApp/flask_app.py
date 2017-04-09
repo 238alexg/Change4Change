@@ -117,13 +117,15 @@ class Report(db.Model):
 	text = db.Column(db.String(4096))
 	isEmergency = db.Column(db.Boolean)
 	isAnonymous = db.Column(db.Boolean)
-	user_id = db.Column(db.Integer)
+	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+	user = db.relationship("User", back_populates="reports")
 
 # Model for users
 class User(db.Model):
 	__tablename__ = "users"
 	id = db.Column(db.Integer, primary_key = True)
 	token = db.Column(db.String(512))
+	reports = db.relationship("Report", back_populates="user")
 
 
 if __name__ == "__main__":
