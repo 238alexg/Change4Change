@@ -64,7 +64,7 @@ def report():
 			longitude = request.form.get('longitude')
 			reportText = request.form.get('reportText')
 			isEmergency = request.form.get('isEmergency')
-			isAnonymous = request.form.get('isAnonymous')
+			isAnonymous = request.form.get('anonymous')
 
 			user = User.query.filter(User.token == session["token"])
 
