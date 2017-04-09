@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script langauge="JavaScript" src="../static/table.js"></script>
 </head>
 <body>
 
@@ -39,7 +40,7 @@
                 <td>idgaf</td>
             {% endif %}
             <td>
-                <div> class="content hideContent">{{ item.text }}
+                <div> class="content hideContent"> {{ item.text }}
                     <p>Some more text</p>
                     <ul>
                         <li>Some more text</li>
@@ -47,10 +48,11 @@
                         <li>Some more text</li>
                     </ul>
                 </div>
+                <div class="show-more">
+                    <a href="#">Show more</a>
+                </div>
             </td>
-            <div class="show-more">
-                <a href="#">Show more</a>
-            </div>
+
             {% if (item.isAnonymous) %}
                 <td>ANONYMOUS</td>
             {% else %}
