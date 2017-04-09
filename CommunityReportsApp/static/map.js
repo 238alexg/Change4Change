@@ -92,10 +92,10 @@ function addMarkers(markersOld) {
         }
         var aIcon;
         if(markersOld[i][3]){
-            aIcon = 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+            aIcon = 'https://maps.google.com/mapfiles/ms/icons/red-dot.png';
         }
         else{
-            aIcon = 'https://maps.google.com/mapfiles/ms/icons/red-dot.png';
+            aIcon = 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png';
         }
         marker = new google.maps.Marker({
             position: position,
