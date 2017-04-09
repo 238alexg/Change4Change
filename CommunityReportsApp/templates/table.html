@@ -8,8 +8,68 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+    }
+    html, body {
+      height: 100%; 
+      margin: 0px; 
+      padding-right:1px; 
+      padding-left:1px;
+      position: fixed;  
+        width: 100%;
+    }
+    p {font-size: 16px;}
+      .margin {margin-bottom: 45px;}
+      .bg-1 {
+      background-color: rgba(81, 145, 205, 0.45); /* Blue */
+      color: #ffffff;
+      height: 100%;
+    }
+    .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+    }
+    .navbar {
+      padding-top: 0px;
+      padding-bottom: 0px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 3px;
+      background-color: #E4F8FF;
+    }
+    #dropDown ul li a{
+      color: #004460;
+    }
+    .navbar-nav  li a:hover {
+      color: #1abc9c !important;
+    }
+  </style>
 </head>
 <body>
+<nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" >LOOK!</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right" id="dropDown">
+          <li><a href="#">My Report</a></li>
+          <li><a href="./map.html">Local</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
 <div class="container">
   <h2>Report</h2>
