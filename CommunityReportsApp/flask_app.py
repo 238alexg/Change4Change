@@ -96,29 +96,26 @@ def submitReport():
 	latitude = request.args.get('lat', 0, type=float)
 	longitude = request.args.get('long', 0, type=float)
 
-	return jsonify(result = [text, isEmergency, isAnonymous, latitude, longitude])
+	user = User.query.filter(User.token == session["token"])
 
+	if (user == None):
+		return jsonify(result = "NO USER")
 
-	# user = User.query.filter(User.token == session["token"])
+	newReport = Report(
+		latitude = latitude,
+		longitude = longitude,
+		event_dt = datetime.now(),
+		text = text,
+		isEmergency = isEmergency,
+		isAnonymous = isAnonymous,
+		user = user,
+		human_time = str(arrow.get(datetime.now()).humanize())
+	)
 
-	# if (user == None):
-	# 	return jsonify(result = "Finished")
+	db.session.add(newReport)
+	db.session.commit()
 
-	# newReport = Report(
-	# 	latitude = latitude,
-	# 	longitude = longitude,
-	# 	event_dt = datetime.now(),
-	# 	text = text,
-	# 	isEmergency = isEmergency,
-	# 	isAnonymous = isAnonymous,
-	# 	user = user,
-	# 	human_time = str(arrow.get(datetime.now()).humanize())
-	# )
-
-	# db.session.add(newReport)
-	# db.session.commit()
-
-	# return jsonify(result = "Finished")
+	return jsonify(result = "Finished")
 
 
 @app.route("/deleteReport", methods=['POST'])
