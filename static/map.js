@@ -101,8 +101,8 @@ function addMarkers() {
         };
 
     var markersOld = [
-        [ 44.052, -123.086, "a test","event",1591709677],
-        [ 44.032, -123.087, "a test2","crime",1490709677]
+        [ 44.052, -123.086, "This is a test event","event",1591709677],
+        [ 44.042, -123.084, "A murder happened here","crime",1490709677]
     ];
     /*var locations = [];
     for(i = 0; i < markersOld.length; i++)
@@ -144,8 +144,8 @@ function addMarkers() {
         // Allow each marker to have an info window    
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-                infoWindow.setContent(markersOld[i][2] + "<br>"
-                + markersOld[i][3]);
+                infoWindow.setContent("<b>Type: </b><i>" + markersOld[i][3] + "</i><br>"
+                + "<b>Desc: </b><i>" + markersOld[i][2]+"</i>");
                 infoWindow.open(map, marker);
                 marker.setAnimation(null);
             }
