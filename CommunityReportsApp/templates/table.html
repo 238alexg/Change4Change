@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script langauge="JavaScript" src="../static/table.js"></script>
 </head>
 <body>
 
@@ -51,7 +50,9 @@
                     <a href="#">Show more</b>
                 </div>
                 <script>
+
                     $(".show-more a").on("click", function() {
+                        console.log("TEST");
                         var $this = $(this);
                         var $content = $this.parent().prev("div.content");
                         var linkText = $this.text().toUpperCase();
