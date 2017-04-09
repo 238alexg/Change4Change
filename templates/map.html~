@@ -19,7 +19,7 @@
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYk3h5SFMD7YThRHX50g8uZYmPmoqLjnU&callback=initMap"
 		async defer></script>
 
-		<div id="form">
+		<div id="form" type="hidden">
 			<table>
 			<input type="hidden" id="lat">
 			<input type="hidden" id="long">
@@ -53,7 +53,7 @@
         var long = document.getElementById('long').value;
         var anon = document.getElementById('anon').checked;
         $.getJSON('/_submitReport',
-            { description: description, isEmergency: isEmergency, lat: lat, long: long, anon: anon},
+            { description: description, isEmergency: isEmergency, lat: lat, long: long, anonymous: anon},
             function(data) {
                 var result = data.result;
                 obj = JSON.parse(result);

@@ -153,7 +153,7 @@ def signIn():
 
 @app.route("/deleteReport", methods=['POST'])
 def deleteReport():
-	reportID = report.form.get('id')
+	reportID = request.form.get('id')
 	Report.query.filter_by(id=reportID).delete()
 	db.session.commit()
 	return redirect('/testReports')
