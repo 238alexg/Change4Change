@@ -14,7 +14,7 @@
 <div class="container">
   <h2>Report</h2>
 
-  <table class="table">
+  <table class="table" id="thisTable">
     <thead>
       <tr>
         <th>DateTime</th>
@@ -26,7 +26,6 @@
     </thead>
     <tbody>
     {% for item in reports %}
-
         {% if (item.isEmergency) %}
         <tr class="emergency">
         {% else %}
@@ -36,7 +35,7 @@
             {% if (item.isEmergency) %}
                 <td>EMERGENCY!</td>
             {% else %}
-                <td>idgaf</td>
+                <td>Not Urgent</td>
             {% endif %}
             <td>{{ item.text }}</td>
             {% if (item.isAnonymous) %}
@@ -44,7 +43,9 @@
             {% else %}
                 <td>PUBLIC</td>
             {% endif %}
+            <td> <button type="button" class="btn btn-danger btn-circle delete-row" href="#" ><i class="glyphicon glyphicon-remove"> </td> 
         </tr>
+
 
     {% endfor %}
 
@@ -68,6 +69,17 @@ for (i = 0; i < acc.length; i++) {
         }
     }
 }
+</script>
+
+<script type="text/javascript">
+  $('#thisTable').on('click', 'a', function() {
+  $(this).closest('tr').remove();
+
+  //check if no more rows and remove the table
+  if ($('#thisTable tbody tr').length == 0) {
+    $('#thisTable').remove();
+  }
+});
 </script>
 
 </body>
