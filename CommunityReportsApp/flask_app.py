@@ -47,20 +47,17 @@ def login():
 	# User is trying to log in to Google
 	if (request.method == 'POST'):
 		token = request.form.get('token')
-		print(token)
 
-		return render_template('error.html', error = token)
+		user = User.query.filter(User.token == token)
+		if (user == None):
+			newUser = User(token = token)
+			db.session.add(newUser)
+			db.session.commit()
+			user = User.query.filter(User.token == token)
+		
+		session['token'] = token
 
-		# user = User.query.filter(User.token == token)
-		# if (user == None):
-		# 	newUser = User(token = token)
-		# 	db.session.add(newUser)
-		# 	db.session.commit()
-		# 	user = User.query.filter(User.token == token)
-		#
-		# session['token'] = token
-
-
+		return render_template('error.html', error = "You are logged in!")
 
 	return render_template('signIn.html')
 
