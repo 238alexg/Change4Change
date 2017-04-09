@@ -4,7 +4,7 @@
   <title>Reports</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="static/table.css" media="screen"/>
+  <link rel="stylesheet" type="text/css" href="../static/table.css" media="screen"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -83,7 +83,7 @@
         <tr style="background-color: rgba(138, 130, 130, 0.5);">
         {% endif %}
             <td>
-                <div class="content hideContent"> {{ item.text }}
+                <div class="content hideContent" style="padding-left: 15px;"> {{ item.text }}
                     <ul>
                         <br>
                         <li>Time: {{ item.event_dt }}</li>
