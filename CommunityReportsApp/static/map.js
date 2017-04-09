@@ -1,63 +1,68 @@
+Date.prototype.getUnixTime = function() { return this.getTime()/1000|0 };
+if(!Date.now) Date.now = function() { return new Date(); }
+Date.time = function() { return Date.now().getUnixTime(); }
 var map;
 //#141414
 
-function initMap() {
-	var styleArray = [
-	 {
-		featureType: "road",
-		elementType: "labels",
-		stylers: [
-		  { visibility: "off" }
-		]
-	  }
-	  ,{
-		featureType: "poi",
-		elementType: "all",
-		stylers: [
-		  { visibility: "off" }
-		]
-	  }
-	  ,{
-		featureType: "water",
-		stylers: [
-		  { "color": "#161616" }
-		]
-	  }
-	  ,{
-		featureType: "landscape",
-		stylers: [
-		  {"color": "#BBBBBB"}
-		]
-	  }
-	  ,{
-		featureType: "administrative",
-		stylers: [
-		  { visibility: "off" }
-		]
-	  },{
-		featureType: "administrative.locality",
-		stylers: [
-		  { visibility: "on" }
-		]
-	  }
-	];
+function initMap(){
+  var styleArray = [
+   {
+    featureType: "road",
+    elementType: "labels",
+    stylers: [
+      { visibility: "off" }
+    ]
+    }
+    ,{
+    featureType: "poi",
+    elementType: "all",
+    stylers: [
+      { visibility: "off" }
+    ]
+    }
+    ,{
+    featureType: "water",
+    stylers: [
+      { "color": "#161616" }
+    ]
+    }
+    ,{
+    featureType: "landscape",
+    stylers: [
+      {"color": "#BBBBBB"}
+    ]
+    }
+    ,{
+    featureType: "administrative",
+    stylers: [
+      { visibility: "off" }
+    ]
+    },{
+    featureType: "administrative.locality",
+    stylers: [
+      { visibility: "on" }
+    ]
+    }
+  ];
   map = new google.maps.Map(document.getElementById('map'), {
     center: {
       lat: 44.052,
       lng: -123.086
     },
-	styles: styleArray,
+  styles: styleArray,
     zoom: 14
   });
-	var trafficLayer = new google.maps.TrafficLayer();
-	trafficLayer.setMap(map);
+  var trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(map);
 
-	marker = new google.maps.Marker({
+  marker = new google.maps.Marker({
       map: map
     });
-	map.addListener('rightclick', function(e) {
+  map.addListener('rightclick', function(e) {
         createWindow(e);
     });
+
+    //addMarkers();
 }
 
 function createWindow(e) {
@@ -73,48 +78,97 @@ function createWindow(e) {
     console.log("Latitude: " + latitude +'\n' +"Longitude: " + longitude);
 
     infowindow = new google.maps.InfoWindow;
-     var formData = document.getElementById('form');
+    var formData = document.getElementById('form');
     infowindow.setContent(formData);
     infowindow.open(map, marker);
-    google.maps.event.addListener(infowindow,'closeclick',function(){
+    google.maps.event.addListener(infowindow,'click',function(){
         window.location.reload();
-   // then, remove the infowindows name from the array
-});
-
-}
-
-function saveData() {
-    var name = escape(document.getElementById('description').value);
-    var type = document.getElementById('type').value;
-    var latlng = marker.getPosition();
-
-    function main(){
-          $.getJSON($SCRIPT_ROOT + '/_submitReport',
-                  { description: description, type: type, latlng: latlng},
-                  function(data) {
-                     var result = data.result;
-                     obj = JSON.parse(result);
-                     if(result == "result: failed"){
-                        alert("error");
-                         }
-                    else{
-                        console.log(result);
-                        }
-                  }); // End of the call to getJSON
-          };  // End of the function to be called when field changes
-
-
-    messagewindow = new google.maps.InfoWindow({
-        content: document.getElementById('message')
+    // then, remove the infowindows name from the array
     });
-        google.maps.event.addListener(map,'click',function(){
-        window.location.reload();
-   // then, remove the infowindows name from the array
-});
-    infowindow.close();
-        google.maps.event.addListener(messagewindow,'closeclick',function(){
-        window.location.reload();
-   // then, remove the infowindows name from the array
-});
-    messagewindow.open(map, marker);
+
 }
+
+function addMarkers(markersOld) {
+      console.log(markersOld);
+      var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var icons = {
+          Event: {
+            icon: iconBase + 'parking_lot_maps.png'
+          },
+          Crime: {
+            icon: iconBase + 'info-i_maps.png'
+          }
+        };
+
+    /*var markersOld = [
+        [ 44.052, -123.086, "This is a test event","event",1591709677],
+        [ 44.042, -123.084, "A murder happened here","crime",1490709677]
+    ];*/
+    /*var locations = [];
+    for(i = 0; i < markersOld.length; i++)
+    {
+        var aLoc = {lat: markersOld[i][0], lng: markersOld[i][1]};
+        locations.push(aLoc);
+    }
+    var markers = locations.map(function(location, i) {
+        return new google.maps.Marker({
+            position: location
+        });
+    });*/
+
+    // Add a marker clusterer to manage the markers.
+    /*var markerCluster = new MarkerClusterer(map, markers,
+        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+    */
+     var infoWindow = new google.maps.InfoWindow(), marker, i;
+     for( i = 0; i < markersOld.length; i++ ) {
+        var position = new google.maps.LatLng(markersOld[i][0], markersOld[i][1]);
+        var animation;
+        var theTime = new Date();
+        var theResult = theTime.getUnixTime()-markersOld[i][4];
+        console.log(theTime.getUnixTime()-markersOld[i][4]);
+        if(theResult<300){
+            animation = google.maps.Animation.BOUNCE;
+        }
+        else{
+            animation = null;
+        }
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            icon: icons[markersOld[i][3]].icon,
+            animation: animation
+        });
+
+        // Allow each marker to have an info window
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent("<b>Type: </b><i>" + markersOld[i][3] + "</i><br>"
+                + "<b>Desc: </b><i>" + markersOld[i][2]+"</i>");
+                infoWindow.open(map, marker);
+                marker.setAnimation(null);
+            }
+        })(marker, i));
+
+        // Automatically center the map fitting all markers on the screen
+    }
+}
+
+// When the button is clicked, fetch the details about the entered flight ident.
+$(document).ready(function(){
+  $.ajax({
+    type: 'GET',
+    url: '/_getMarkers',
+    data: { },
+    success : function(result) {
+      if (result.error) {
+        alert('Failed to fetch');
+        return;
+      }
+      console.log(result);
+      addMarkers(result.result);
+
+      //alert('Did not find any useful flights');
+    }
+  });
+});
