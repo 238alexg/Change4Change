@@ -34,8 +34,10 @@ db = SQLAlchemy(app)
 
 @app.route("/login", methods=['GET','POST'])
 def login():
+	if (session.get('token')):
+		return redirect("/report")
 	# User is trying to log in to Google
-	if (request.method == 'POST'):
+	elif (request.method == 'POST'):
 		token = request.form.get('token')
 
 		user = User.query.filter(User.token == token)
@@ -44,14 +46,14 @@ def login():
 			db.session.add(newUser)
 			db.session.commit()
 			user = User.query.filter(User.token == token)
-		
+
 		session['token'] = token
 
 		#return redirect("/report")
 		return render_template('error.html', error="LOGIN ERROR!")
 	else:
-		#return render_template('signIn.html')
-		return render_template('error.html', error="LOGIN ERROR!")
+		return render_template('signIn.html')
+		#return render_template('error.html', error="LOGIN ERROR!")
 
 @app.route("/", methods=['GET','POST'])
 @app.route("/report", methods=['GET','POST'])
@@ -90,7 +92,8 @@ def report():
 			# Render report page with report confirmation
 			return render_template('map.html', success = True)
 	else:
-		return redirect('/login')
+	    return render_template('error.html', error="LOGIN ERROR!")
+		#return redirect('/login')
 
 @app.route("/testReports", methods=['GET','POST'])
 def testReports():
