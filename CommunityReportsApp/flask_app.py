@@ -1,11 +1,9 @@
 # communityReportsApp.py
 
-import flask
-from flask import Flask, request, url_for, jsonify, render_template
+from flask import Flask, request, session, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 from datetime import datetime
-import json
 import logging
 import CONFIG
 import uuid
@@ -13,7 +11,7 @@ import uuid
 ###############
 ### Globals ###
 ###############
-app = flask.Flask(__name__)
+app = Flask(__name__)
 app.secret_key = str(uuid.uuid4())
 app.debug = CONFIG.DEBUG
 app.logger.setLevel(logging.DEBUG)
@@ -98,11 +96,11 @@ def testReports():
 
 @app.route("/mapFile")
 def mapFile():
-	return flask.render_template('map.html')
+	return render_template('map.html')
 
 @app.route("/signIn")
 def signIn():
-	return flask.render_template('signIn.html')
+	return render_template('signIn.html')
 
 
 ###############
