@@ -2,7 +2,7 @@
 
 import flask
 from flask import Flask, request, url_for, jsonify, render_template
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 from datetime import datetime
 import json
@@ -117,7 +117,7 @@ class Report(db.Model):
 	text = db.Column(db.String(4096))
 	isEmergency = db.Column(db.Boolean)
 	isAnonymous = db.Column(db.Boolean)
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 	user = db.relationship("User", back_populates="reports")
 
 # Model for users
@@ -125,7 +125,7 @@ class User(db.Model):
 	__tablename__ = "users"
 	id = db.Column(db.Integer, primary_key = True)
 
-	token = db.Column(db.String(1024), unique = True)
+	token = db.Column(db.String(512), unique = True)
 	reports = db.relationship("Report", back_populates="user")
 
 
