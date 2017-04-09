@@ -59,10 +59,10 @@
 
                         if(linkText === "SHOW MORE"){
                             linkText = "Show less";
-                            $content.switchClass("hideContent", "showContent");
+                            $content.addClass("showContent").removeClass("hideContent");
                         } else {
                             linkText = "Show more";
-                            $content.switchClass("showContent", "hideContent");
+                            $content.addClass("hideContent").removeClass("showContent");
                         };
 
                         $this.text(linkText);
