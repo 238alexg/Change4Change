@@ -101,7 +101,7 @@ function saveData() {
                         console.log(result);
                         }
                   }); // End of the call to getJSON
-          });  // End of the function to be called when field changes
+          };  // End of the function to be called when field changes
 
 
     messagewindow = new google.maps.InfoWindow({
