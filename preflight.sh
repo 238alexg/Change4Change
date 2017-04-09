@@ -27,5 +27,6 @@ then
     cp CommunityReportsApp/flask_app.py flask_app.py
     cp -r CommunityReportsApp/static .
     cp -r CommunityReportsApp/templates .
+    python3 testDB.py
     exit;
 fi

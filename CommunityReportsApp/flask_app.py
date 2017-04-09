@@ -96,7 +96,9 @@ def report():
 		# Render report page with report confirmation
 		return render_template('map.html', success = True)
 
-
+@app.route("/testReports", methods=['GET','POST'])
+	reports = Report.query.all()
+	return render_template('table.html', reports = reports)
 
 @app.route("/mapFile")
 def mapFile():
