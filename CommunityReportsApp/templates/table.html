@@ -59,7 +59,7 @@
                 <td>PUBLIC</td>
             {% endif %}
             <td> <form type="hidden" action = "/deleteReport" method="POST">
-                <input type="hidden" value={{item.id}}></input>
+                <input type="hidden" value="{{item.id}}" name="id"></input>
                 <input type="submit" value="X" class="btn btn-danger btn-circle delete-row" href="#" ></input>
                 </form> </td>
         </tr>
