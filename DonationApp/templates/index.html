@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-  <title>Change4Change</title>
+  <title>EugChange</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -108,6 +108,23 @@
       /* custom max width */
       max-width:320px;
     }
+    #myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: purple;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  #myBtn:hover {
+    background-color: #555;
+  }
   </style>
 </head>
 <body>
@@ -121,7 +138,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Change4Change</a>
+      <a class="navbar-brand" href="#">EugChange</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -157,7 +174,7 @@
       src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
 
     </form>
-    <p style="margin-right: 25%; margin-left: 25%; font-size: 2.5vmin; margin-bottom: 5%;">Change4Change is a secure alternative to giving to panhandlers.</p>
+    <p style="margin-right: 25%; margin-left: 25%; font-size: 2.5vmin; margin-bottom: 5%;">EugChange is a secure alternative to giving to panhandlers.</p>
   </div>
 </div>
 
@@ -168,14 +185,27 @@
     <div class="col-sm-1"></div>
     <div class="col-sm-4">
     <h3>What?</h3>
-      <p>Many of us are uncomfortable giving money to panhandlers, but really want to help people in need. Change4Change sends your gift to a dedicated fund at St. Vincent de Paul, providing direct service to homeless residents and helping you give wisely on the go.</p>
+      <p>Many of us are uncomfortable giving money to panhandlers, but really want to help people in need. EugChange sends your gift to a dedicated fund at St. Vincent de Paul, providing direct service to homeless residents and helping you give wisely on the go.</p>
     </div>
     <div class="col-sm-2"></div>
     <div class="col-sm-4">
     <h3>Why?</h3>
-      <p>Using Change4Change takes away the incentives driving dense concentrations of panhandlers in lively pedestrian areas such as downtown. It also provides an easy way to support experienced providers of services to people in need, document your real-time giving for tax purposes, and make sure your money will help improve lives.</p>
+      <p>Using EugChange takes away the incentives driving dense concentrations of panhandlers in lively pedestrian areas such as downtown. It also provides an easy way to support experienced providers of services to people in need, document your real-time giving for tax purposes, and make sure your money will help improve lives.</p>
     </div>
     <div class="col-sm-1"></div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("myBtn").style.display = "block";
+        } else {
+            document.getElementById("myBtn").style.display = "none";
+        }
+    }
+    </script>
   </div>
 </div>
 
@@ -194,19 +224,19 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="../static/img/symbols.jpg" alt="Chania" class="car-img">
+      <img src="../static/img/clothing.svg" alt="Pic0" class="car-img">
     </div>
-
     <div class="item">
-      <img src="../static/img/lawn.jpg" alt="Pic 1" class="car-img">
+      <img src="../static/img/food.svg" alt="Pic 1" class="car-img">
     </div>
-
     <div class="item">
-      <img src="../static/img/garden.jpg" alt="Pic 2" class="car-img">
+      <img src="../static/img/shower.svg" alt="Pic 2" class="car-img">
     </div>
-
     <div class="item">
-      <img src="../static/img/LK at meter.jpg" alt="Pic 3" class="car-img">
+      <img src="../static/img/house.svg" alt="Pic 3" class="car-img">
+    </div>
+    <div class="item">
+      <img src="../static/img/teaching.svg" alt="Pic 4" class="car-img">
     </div>
   </div>
 
@@ -226,7 +256,7 @@
 <div class="container-fluid bg-4 text-center">
   <div class="container text-center" id = partnershipBox style="width: 40%; height:auto; padding-left: 0px; padding-right: 0px; width: 100%;">
     <p style="margin-bottom: 0px;">Partnering with</p>
-    <img src="../static/img/CoE_logo_2clr.jpg" class="img-responsive img-circle logo-img" alt="Image">
+    <a href="https://www.eugene-or.gov/"><img src="../static/img/CoE_logo_2clr.jpg" class="img-responsive img-circle logo-img" alt="Image"></a>
     <a href="http://www.svdp.us/what-we-do/homeless-services/"><img src="../static/img/stpaul logo.jpg" class="img-responsive img-circle logo-img" alt="Image"></a>
   </div>
 </div>
