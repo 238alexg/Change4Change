@@ -4,7 +4,14 @@
 EUGChange is a secure alternative to giving money to panhandlers.
 
 ## Link: 
+http://eugchange.pythonanywhere.com/ <br/>
+
+
+# Downtown Safety App
+
+## Description:
 http://change4change.pythonanywhere.com/ <br/>
+
 
 ## Team Members: <br/>
 Chris Brooks cbrooks4@uoregon.edu<br/>
