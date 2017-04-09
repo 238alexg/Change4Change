@@ -5,8 +5,8 @@
 from flask_app import Report, User, db
 from datetime import datetime
 
-db.drop_all()
-db.create_all()
+#db.drop_all()
+#db.create_all()
 
 # Create users
 user1 = User(
@@ -16,6 +16,10 @@ user1 = User(
 user2 = User(
 	token = "THISISALSOALONGTOKEN"
 )
+
+print(user1.id)
+print(user1.id)
+
 
 db.session.add(user1)
 db.session.add(user2)
