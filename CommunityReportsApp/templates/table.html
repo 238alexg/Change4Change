@@ -63,23 +63,16 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right" id="dropDown">
-          <li><a href="#">My Report</a></li>
-          <li><a href="./map.html">Local</a></li>
+          <li><a href="/report">Local</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
 <div class="container">
-  <h2>Report</h2>
+  <h2>My Reports</h2>
 
   <table class="table" id="thisTable">
-    <thead>
-      <tr>
-        <th>Description</th>
-        <th>    </th>
-      </tr>
-    </thead>
     <tbody>
     {% for item in reports %}
         {% if (item.isEmergency) %}
@@ -98,7 +91,6 @@
                 <div class="show-more">
                     <a href="#">Show more</b>
                 </div>
-
 
             </td>
             <td> <form type="hidden" action = "/deleteReport" method="POST">
