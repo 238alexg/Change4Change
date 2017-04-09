@@ -1,17 +1,26 @@
-# Change4Change
+# EUGChange
 
-## Description 
-$4Change
+## Description:
+EUGChange is a secure alternative to giving money to panhandlers.
 
 ## Link: 
+http://eugchange.pythonanywhere.com/ <br/>
+
+
+# Downtown Safety App
+
+## Description:
+
+## Link:
 http://change4change.pythonanywhere.com/ <br/>
 
-## Team Members <br/>
-Chris Brooks <br/>
-Alex Geoffrey <br/>
-Jeffrey Knees <br/>
-Daniel Su <br/>
-Brandon Sov<br/>
+
+## Team Members: <br/>
+Chris Brooks cbrooks4@uoregon.edu<br/>
+Alex Geoffrey apg@uorgeon.edu<br/>
+Jeffrey Knees jknees@uoregon.edu<br/>
+Daniel Su dsu@uoregon.edu<br/>
+Brandon Sov b.r.a.n.d.o.n.s.o.v@gmail.com<br/>
 <br/>
 
 ## Installation (to be viewed locally)
@@ -22,6 +31,6 @@ pip install -r requirements.txt
 <<<<<<< HEAD
 pip install flask
 =======
->>>>>>> 5abc8fad1c346af08f91ccf2722b089ed51806fc
+>>>>>>> 73482b5908a24f8134604c4fd90e7d3e0af1d297
 python3 app.py
 ```

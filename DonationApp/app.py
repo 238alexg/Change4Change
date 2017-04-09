@@ -25,20 +25,13 @@ SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostnam
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 
-<<<<<<< HEAD
-import uuid
-=======
 db = SQLAlchemy(app)
 
->>>>>>> 37469c844f67a1d2a67d4ecc08f14e2b71d5164b
 app.secret_key = str(uuid.uuid4())
 app.debug = CONFIG.DEBUG
 app.logger.setLevel(logging.DEBUG)
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 37469c844f67a1d2a67d4ecc08f14e2b71d5164b
 #############
 ####Pages####
 #############
@@ -47,16 +40,12 @@ app.logger.setLevel(logging.DEBUG)
 @app.route("/", methods=['GET','POST'])
 @app.route("/index", methods=['GET','POST'])
 def index():
-<<<<<<< HEAD
-    app.logger.debug("Main page entry")
-    return flask.render_template('index.html')
-=======
 	if (request.method == 'GET'):
 	    app.logger.debug("Main page entry")
 	    return render_template('index.html')
 
 # Test function to test database interaction
-# LATER: Will have admin authentication, then various 
+# LATER: Will have admin authentication, then various
 #        queries to show reports.
 @app.route("/displayReports", methods=['GET','POST'])
 def displayReports():
@@ -84,13 +73,10 @@ def report():
 			text = reportText,
 			isEmergency = isEmergency
 		)
+	db.session.add(newReport)
+	db.session.commit()
 
-		db.session.add(newReport)
-		db.session.commit()
-
-		return render_template('index.html')
-
-
+	return render_template('index.html')
 
 # Database model declaration for report data
 class Report(db.Model):
@@ -103,20 +89,6 @@ class Report(db.Model):
 	event_dt = db.Column(db.DateTime)
 	text = db.Column(db.String(4096))
 	isEmergency = db.Column(db.Boolean)
-
-    
-if __name__ == "__main__":
-    import uuid
-    app.secret_key = str(uuid.uuid4())
-    app.debug = CONFIG.DEBUG
-    app.logger.setLevel(logging.DEBUG)
-    app.run(port=CONFIG.PORT,threaded=True)
-
->>>>>>> 37469c844f67a1d2a67d4ecc08f14e2b71d5164b
-
-@app.route("/mapFile")
-def mapFile():
-    return flask.render_template('map.html')
 
 if __name__ == "__main__":
     app.run(port=CONFIG.PORT,threaded=True)
