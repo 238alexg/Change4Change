@@ -2,7 +2,7 @@
 
 import flask
 from flask import Flask, request, url_for, jsonify, render_template
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 from datetime import datetime
 import json
@@ -33,14 +33,6 @@ db = SQLAlchemy(app)
 ###############
 ### Routes  ###
 ###############
-
-# Test function to test database interaction
-# LATER: Will have admin authentication, then various
-#        queries to show reports.
-@app.route("/displayReports", methods=['GET','POST'])
-def displayReports():
-	results = Report.query.all()
-	return render_template('DBtest.html', results = results)
 
 @app.route("/", methods=['GET','POST'])
 def login():
@@ -97,6 +89,7 @@ def report():
 		return render_template('map.html', success = True)
 
 @app.route("/testReports", methods=['GET','POST'])
+def testReports():
 	reports = Report.query.all()
 	return render_template('table.html', reports = reports)
 
@@ -124,7 +117,7 @@ class Report(db.Model):
 	text = db.Column(db.String(4096))
 	isEmergency = db.Column(db.Boolean)
 	isAnonymous = db.Column(db.Boolean)
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 	user = db.relationship("User", back_populates="reports")
 
 # Model for users
@@ -132,7 +125,7 @@ class User(db.Model):
 	__tablename__ = "users"
 	id = db.Column(db.Integer, primary_key = True)
 
-	token = db.Column(db.String(1024), unique = True)
+	token = db.Column(db.String(512), unique = True)
 	reports = db.relationship("Report", back_populates="user")
 
 
