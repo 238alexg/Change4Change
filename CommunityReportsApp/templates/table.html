@@ -17,7 +17,6 @@
     <thead>
       <tr>
         <th>DateTime</th>
-        <th>Location</th>
         <th>Incident</th>
         <th>Description</th>
         <th>Anonymous</th>
@@ -28,17 +27,16 @@
     {% for item in reports %}
       <tr>
         <td>{{ item.event_dt }}</td>
-        <td>{{ item.latitude }}{{ item.longitude }}</td>
         {% if (item.isEmergency) %}
-            <td class="emergency">EMERGENCY!</td>
+            <td>EMERGENCY!</td>
         {% else %}
             <td>idgaf</td>
         {% endif %}
         <td>{{ item.text }}</td>
         {% if (item.isAnonymous) %}
-            <td class="success">ANONYMOUS</td>
+            <td>ANONYMOUS</td>
         {% else %}
-            <td class="warning">PUBLIC</td>
+            <td>PUBLIC</td>
         {% endif %}
       </tr>
     {% endfor %}

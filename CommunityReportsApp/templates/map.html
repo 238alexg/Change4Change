@@ -19,6 +19,33 @@
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYk3h5SFMD7YThRHX50g8uZYmPmoqLjnU&callback=initMap"
 		async defer></script>
 
+		<div id="form">
+			<table>
+				<input type="hidden" id="lat">
+				<input type="hidden" id="long">
+			<tr>
+			<td>Description</td>
+			<td> <input type='text' id='description'/> </td>
+			</tr>
+			<tr>
+			<td>Type:</td>
+			<td><select id='type'> +
+				<option value='crime' SELECTED>crime</option>
+				<option value='event'>event</option>
+			</select> </td>
+			</tr>
+			<tr>
+			<td>Anon:</td>
+			<td><select id='anon' form="form"> +
+				<option value='True' SELECTED>True</option>
+				<option value='False'>False</option>
+			</select> </td>
+			</tr>
+			<tr><td></td><td><input id='myBtn' type='button' value='Save'></td></tr>
+			</table>
+		</div>
+		<div id="message">Location saved</div>
+
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-client_id" content="494678703644-ufofnmrub4m7dm8cn1lo394huo4sqb79.apps.googleusercontent.com">
 
