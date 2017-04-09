@@ -82,10 +82,7 @@ def getMarkers():
 
 	for report in reports:
 		epoch = report.event_dt.strftime('%s')
-		if (report.isEmergency):
-			data.append([report.latitude, report.longitude, report.text, "Crime", epoch])
-		else:
-			data.append([report.latitude, report.longitude, report.text, "Event", epoch])
+		data.append([report.latitude, report.longitude, report.text, report.isEmergency, epoch])
 
 	return jsonify(result = data)
 
