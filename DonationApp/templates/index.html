@@ -137,8 +137,26 @@
 <!-- First Container -->
 <div class="img-1" id = "donate">
   <div class="container-fluid bg-1 text-center">
-    <h3 style="margin-bottom: 5%; font-size: 6vmin; margin-top: 0px;">A safer way to help the homeless</h3>
-    <button type="button" class="btn-xlarge">Donate</button>
+    <h2 style="margin-bottom: 5%; font-size: 6vmin; margin-top: 0px;">A safer way to help the homeless</h2>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+      <!-- Identify your business so that you can collect the payments. -->
+    <input type="hidden" name="business"
+        value="ACCCOOOUNNTNAME">
+
+    <!-- Specify a Donate button. -->
+    <input type="hidden" name="cmd" value="_donations">
+
+    <!-- Specify details about the contribution -->
+    <input type="hidden" name="item_name" value="Friends of the Park">
+    <input type="hidden" name="item_number" value="Fall Cleanup Campaign">
+    <input type="hidden" name="currency_code" value="USD">
+
+    <input type="submit" value="Donate" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn-xlarge">
+    <img alt="" width="1" height="1"
+      src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+
+    </form>
     <p style="margin-right: 25%; margin-left: 25%; font-size: 2.5vmin; margin-bottom: 5%;">Change4Change is a secure alternative to giving to panhandlers.</p>
   </div>
 </div>
