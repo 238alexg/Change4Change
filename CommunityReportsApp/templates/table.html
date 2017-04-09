@@ -28,7 +28,7 @@
     {% for item in reports %}
       <tr>
         <td>{{ item.event_dt }}</td>
-        <td>{{ item.latitude }}{{ item.longtitude }}</td>
+        <td>{{ item.latitude }}{{ item.longitude }}</td>
         {% if item.isEmergency %}
         <td class="danger">{{ item.isEmergency}}</td>
         {% else %}
@@ -40,7 +40,6 @@
         {% else %}
         <td>{{ item.isAnonymous }}</td>
         {% endif %}
-        {% endfor %}
       </tr>
     {% endfor %}
     </tbody>
