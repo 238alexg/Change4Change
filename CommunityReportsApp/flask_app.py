@@ -50,7 +50,7 @@ def login():
 			user = User.query.filter_by(token = token_frag).first()
 
 		session['token'] = user.token
-		session['id']
+		session['id'] = user.id
 
 		return redirect("/report")
 	else:
