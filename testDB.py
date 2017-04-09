@@ -33,7 +33,7 @@ report1 = Report(
 	text = "This is my very first report!",
 	isEmergency = False,
 	isAnonymous = True,
-	user = user1
+	user_id = user1.id
 )
 
 report2 = Report(
@@ -43,7 +43,7 @@ report2 = Report(
 	text = "Emergency! Help!",
 	isEmergency = True,
 	isAnonymous = False,
-	user = user1
+	user_id = user1.id
 )
 
 report3 = Report(
@@ -53,7 +53,7 @@ report3 = Report(
 	text = "Positive comment, in same place as emergency",
 	isEmergency = False,
 	isAnonymous = False,
-	user = user2
+	user_id = user2.id
 )
 
 
