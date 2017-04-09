@@ -64,7 +64,7 @@ def report():
 		else:
 			latitude = request.form.get('latitude')
 			longitude = request.form.get('longitude')
-			reportText = request.form.get('reportText')
+			reportText = request.form.get('description')
 			isEmergency = request.form.get('isEmergency')
 			isAnonymous = request.form.get('anonymous')
 
