@@ -88,7 +88,7 @@ function createWindow(e) {
 
 }
 
-function addMarkers() {
+function addMarkers(markersOld) {
 
       var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
         var icons = {
@@ -100,10 +100,10 @@ function addMarkers() {
           }
         };
 
-    var markersOld = [
+    /*var markersOld = [
         [ 44.052, -123.086, "This is a test event","event",1591709677],
-        [ 44.032, -123.0861, "A murder happened here","crime",1490709677]
-    ];
+        [ 44.042, -123.084, "A murder happened here","crime",1490709677]
+    ];*/
     /*var locations = [];
     for(i = 0; i < markersOld.length; i++)
     {
@@ -166,7 +166,7 @@ $(document).ready(function(){
 				alert('Failed to fetch');
 				return;
 			}
-			addMarkers(result.markersList);
+			addMarkers(result);
 			console.log(result);
 			//alert('Did not find any useful flights');
 		}
