@@ -10,16 +10,12 @@ function initMap(){
       lat: 44.052,
       lng: -123.086
     },
-	//styles: styleArray,
     zoom: 14
   });
-	var trafficLayer = new google.maps.TrafficLayer();
-	trafficLayer.setMap(map);
-	
-	marker = new google.maps.Marker({
+  marker = new google.maps.Marker({
       map: map
     });
-	map.addListener('rightclick', function(e) {
+  map.addListener('rightclick', function(e) {
         createWindow(e);
     });
 
@@ -28,7 +24,7 @@ function initMap(){
 
 function createWindow(e) {
     marker.setPosition(e.latLng);
-    
+
     //set position data
     var latitude = e.latLng.lat();
     var longitude = e.latLng.lng();
@@ -37,7 +33,7 @@ function createWindow(e) {
     var long = document.getElementById("long");
     long.setAttribute("value", longitude);
     console.log("Latitude: " + latitude +'\n' +"Longitude: " + longitude);
-    
+
     infowindow = new google.maps.InfoWindow;
     var formData = document.getElementById('form');
     infowindow.setContent(formData);
@@ -50,13 +46,13 @@ function createWindow(e) {
 }
 
 function addMarkers(markersOld) {
-
+      console.log(markersOld);
       var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
         var icons = {
-          event: {
+          Event: {
             icon: iconBase + 'parking_lot_maps.png'
           },
-          crime: {
+          Crime: {
             icon: iconBase + 'info-i_maps.png'
           }
         };
@@ -71,7 +67,6 @@ function addMarkers(markersOld) {
         var aLoc = {lat: markersOld[i][0], lng: markersOld[i][1]};
         locations.push(aLoc);
     }
-
     var markers = locations.map(function(location, i) {
         return new google.maps.Marker({
             position: location
@@ -101,8 +96,8 @@ function addMarkers(markersOld) {
             icon: icons[markersOld[i][3]].icon,
             animation: animation
         });
-        
-        // Allow each marker to have an info window    
+
+        // Allow each marker to have an info window
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
                 infoWindow.setContent("<b>Type: </b><i>" + markersOld[i][3] + "</i><br>"
@@ -118,21 +113,19 @@ function addMarkers(markersOld) {
 
 // When the button is clicked, fetch the details about the entered flight ident.
 $(document).ready(function(){
-	$.ajax({
-		type: 'GET',
-		url: '/_getMarkers',
-		data: { },
-		success : function(result) {
-			if (result.error) {
-				alert('Failed to fetch');
-				return;
-			}
-			addMarkers(result.result);
-			console.log(result);
-			//alert('Did not find any useful flights');
-		}
-	});
+  $.ajax({
+    type: 'GET',
+    url: '/_getMarkers',
+    data: { },
+    success : function(result) {
+      if (result.error) {
+        alert('Failed to fetch');
+        return;
+      }
+      console.log(result);
+      addMarkers(result.result);
+
+      //alert('Did not find any useful flights');
+    }
+  });
 });
-
-
-

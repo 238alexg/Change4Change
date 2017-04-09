@@ -26,28 +26,61 @@
     </thead>
     <tbody>
     {% for item in reports %}
-    {% if (item.isEmergency) %}
-    <tr class="emergency">
-    {% else %}
-    <tr>
-    {% endif %}
-        <td>{{ item.event_dt }}</td>
+
         {% if (item.isEmergency) %}
-            <td>EMERGENCY!</td>
+        <tr class="emergency">
         {% else %}
-            <td>idgaf</td>
+        <tr data-toggle="collapse" data-target="#accordion">
         {% endif %}
-        <td>{{ item.text }}</td>
-        {% if (item.isAnonymous) %}
-            <td>ANONYMOUS</td>
-        {% else %}
-            <td>PUBLIC</td>
-        {% endif %}
-      </tr>
+            <td>{{ item.event_dt }}</td>
+            {% if (item.isEmergency) %}
+                <td>EMERGENCY!</td>
+            {% else %}
+                <td>idgaf</td>
+            {% endif %}
+            <td>
+                <div> class="content hideContent">{{ item.text }}
+                    <p>Some more text</p>
+                    <ul>
+                        <li>Some more text</li>
+                        <li>Some more text</li>
+                        <li>Some more text</li>
+                    </ul>
+                </div>
+            </td>
+            <div class="show-more">
+                <a href="#">Show more</a>
+            </div>
+            {% if (item.isAnonymous) %}
+                <td>ANONYMOUS</td>
+            {% else %}
+                <td>PUBLIC</td>
+            {% endif %}
+        </tr>
+
     {% endfor %}
+
+
     </tbody>
   </table>
 </div>
+
+<script>
+var acc = document.getElementsByClassName("rowExpand");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    }
+}
+</script>
 
 </body>
 </html>

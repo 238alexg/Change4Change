@@ -1,6 +1,6 @@
 # communityReportsApp.py
 
-from flask import Flask, request, redirect, jsonify, session, render_template
+from flask import Flask, request, jsonify, session, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 from datetime import datetime
@@ -32,7 +32,7 @@ db = SQLAlchemy(app)
 ### Routes  ###
 ###############
 
-@app.route("/login", methods=['GET','POST'])
+@app.route("/", methods=['GET','POST'])
 def login():
 	# User is trying to log in to Google
 	if (request.method == 'POST'):
@@ -51,45 +51,40 @@ def login():
 
 	return render_template('signIn.html')
 
-@app.route("/", methods=['GET','POST'])
 @app.route("/report", methods=['GET','POST'])
 def report():
-
-	if (session.get('token')):
-		# If user is directed to the report page
-		if (request.method == 'GET'):
-			return render_template('map.html')
-		# If the user has posted a report form
-		else:
-			latitude = request.form.get('latitude')
-			longitude = request.form.get('longitude')
-			reportText = request.form.get('reportText')
-			isEmergency = request.form.get('isEmergency')
-			isAnonymous = request.form.get('anonymous')
-
-			user = User.query.filter(User.token == session["token"])
-
-			if (user == None):
-				return render_template('error.html', error="No user in system!")
-
-			# Create new report row
-			newReport = Report(
-				latitude = latitude,
-				longitude = longitude,
-				event_dt = datetime.now(),
-				text = reportText,
-				isEmergency = isEmergency,
-				isAnonymous = isAnonymous,
-				user = user
-			)
-
-			db.session.add(newReport)
-			db.session.commit()
-
-			# Render report page with report confirmation
-			return render_template('map.html', success = True)
+	# If user is directed to the report page
+	if (request.method == 'GET'):
+		return render_template('map.html')
+	# If the user has posted a report form
 	else:
-		return redirect('/login')
+		latitude = request.form.get('latitude')
+		longitude = request.form.get('longitude')
+		reportText = request.form.get('reportText')
+		isEmergency = request.form.get('isEmergency')
+		isAnonymous = request.form.get('isAnonymous')
+
+		user = User.query.filter(User.token == session["token"])
+
+		if (user == None):
+			return render_template('error.html', error="No user in system!")
+
+		# Create new report row
+		newReport = Report(
+			latitude = latitude,
+			longitude = longitude,
+			event_dt = datetime.now(),
+			text = reportText,
+			isEmergency = isEmergency,
+			isAnonymous = isAnonymous,
+			user = user
+		)
+
+		db.session.add(newReport)
+		db.session.commit()
+
+		# Render report page with report confirmation
+		return render_template('map.html', success = True)
 
 @app.route("/testReports", methods=['GET','POST'])
 def testReports():
@@ -111,34 +106,6 @@ def getMarkers():
 
 	return jsonify(result = data)
 
-
-@app.route("/_submitReport")
-def submitReport():
-	text = request.args.get('description', 0, type=str)
-	isEmergency = request.args.get('type',0, type=bool)
-	isAnonymous = request.args.get('anonymous', 0, type=bool)
-	latitude = request.args.get('lat', 0, type=float)
-	longitude = request.args.get('long', 0, type=float)
-
-	user = User.query.filter(User.token == session["token"])
-
-	if (user == None):
-		return render_template('error.html', error="No user in system!")
-
-	newReport = Report(
-		latitude = latitude,
-		longitude = longitude,
-		event_dt = datetime.now(),
-		text = text,
-		isEmergency = isEmergency,
-		isAnonymous = isAnonymous,
-		user = user
-	)
-
-	db.session.add(newReport)
-	db.session.commit()
-
-	return jsonify(result = True)
 
 @app.route("/mapFile")
 def mapFile():

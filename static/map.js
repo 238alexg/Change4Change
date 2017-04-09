@@ -10,16 +10,12 @@ function initMap(){
       lat: 44.052,
       lng: -123.086
     },
-	//styles: styleArray,
     zoom: 14
   });
-	//var trafficLayer = new google.maps.TrafficLayer();
-	//trafficLayer.setMap(map);
-	
-	marker = new google.maps.Marker({
+  marker = new google.maps.Marker({
       map: map
     });
-	map.addListener('rightclick', function(e) {
+  map.addListener('rightclick', function(e) {
         createWindow(e);
     });
 
@@ -28,7 +24,7 @@ function initMap(){
 
 function createWindow(e) {
     marker.setPosition(e.latLng);
-    
+
     //set position data
     var latitude = e.latLng.lat();
     var longitude = e.latLng.lng();
@@ -37,7 +33,7 @@ function createWindow(e) {
     var long = document.getElementById("long");
     long.setAttribute("value", longitude);
     console.log("Latitude: " + latitude +'\n' +"Longitude: " + longitude);
-    
+
     infowindow = new google.maps.InfoWindow;
     var formData = document.getElementById('form');
     infowindow.setContent(formData);
@@ -50,16 +46,16 @@ function createWindow(e) {
 }
 
 function addMarkers(markersOld) {
-
-      var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+      console.log(markersOld);
+      /*var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
         var icons = {
-          event: {
+          Event: {
             icon: iconBase + 'parking_lot_maps.png'
           },
-          crime: {
+          Crime: {
             icon: iconBase + 'info-i_maps.png'
           }
-        };
+        };*/
 
     /*var markersOld = [
         [ 44.052, -123.086, "This is a test event","event",1591709677],
@@ -71,7 +67,6 @@ function addMarkers(markersOld) {
         var aLoc = {lat: markersOld[i][0], lng: markersOld[i][1]};
         locations.push(aLoc);
     }
-
     var markers = locations.map(function(location, i) {
         return new google.maps.Marker({
             position: location
@@ -89,20 +84,27 @@ function addMarkers(markersOld) {
         var theTime = new Date();
         var theResult = theTime.getUnixTime()-markersOld[i][4];
         console.log(theTime.getUnixTime()-markersOld[i][4]);
-        if(theResult<300){
+        if(theResult<300){  
             animation = google.maps.Animation.BOUNCE;
         }
         else{
             animation = null;
         }
+        var aIcon;
+        if(markersOld[i][3]){
+            aIcon = 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png';
+        }
+        else{
+            aIcon = 'https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png';
+        }
         marker = new google.maps.Marker({
             position: position,
             map: map,
-            icon: icons[markersOld[i][3]].icon,
+            icon: aIcon,//icons[markersOld[i][3]].icon,
             animation: animation
         });
-        
-        // Allow each marker to have an info window    
+
+        // Allow each marker to have an info window
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
                 infoWindow.setContent("<b>Type: </b><i>" + markersOld[i][3] + "</i><br>"
@@ -118,21 +120,19 @@ function addMarkers(markersOld) {
 
 // When the button is clicked, fetch the details about the entered flight ident.
 $(document).ready(function(){
-	$.ajax({
-		type: 'GET',
-		url: '/_getMarkers',
-		data: { },
-		success : function(result) {
-			if (result.error) {
-				alert('Failed to fetch');
-				return;
-			}
-			addMarkers(result.result);
-			console.log(result);
-			//alert('Did not find any useful flights');
-		}
-	});
+  $.ajax({
+    type: 'GET',
+    url: '/_getMarkers',
+    data: { },
+    success : function(result) {
+      if (result.error) {
+        alert('Failed to fetch');
+        return;
+      }
+      console.log(result);
+      addMarkers(result.result);
+
+      //alert('Did not find any useful flights');
+    }
+  });
 });
-
-
-

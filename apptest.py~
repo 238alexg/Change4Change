@@ -45,7 +45,8 @@ def getReport():
     
 @app.route("/_getMarkers")
 def getMarkers():
-    markers = [[.4,.2,"lol"],[.4,.2,"lol2"]]
+    markers = [[ 44.052, -123.086, "This is a test event",True,1591709677],
+        [ 44.042, -123.084, "A murder happened here",False,1490709677]]
     return jsonify(result = markers)
     
 if __name__ == "__main__":
