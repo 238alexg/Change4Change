@@ -39,7 +39,8 @@ def getReport():
     atype = request.args.get('type',0, type=str)
     alat = request.args.get('lat',0, type=float)
     along = request.args.get('long',0, type=float)
-    print alat
+    anon = request.args.get('anonymous',0, type=bool)
+    print anon
     return jsonify(result = alat)
     
 @app.route("/_getMarkers")

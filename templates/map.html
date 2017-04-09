@@ -23,12 +23,25 @@
 			<table>
 			<input type="hidden" id="lat">
 			<input type="hidden" id="long">
-			<tr><td>Description</td> <td><input type='text' id='description'/> </td> </tr>
-			<tr><td>Type:</td> <td><select id='type'> +
+			<tr>
+			    <td>Description</td>
+			    <td> <input type='text' id='description'/> </td> 
+			</tr>
+			<tr>
+			    <td>Type:</td> 
+			    <td><select id='type'> +
 			         <option value='crime' SELECTED>crime</option>
 			         <option value='event'>event</option>
-			         </select> </td></tr>
-			         <tr><td></td><td><input id='myBtn' type='button' value='Save'></td></tr>
+			    </select> </td>
+			</tr>
+		    <tr>
+			    <td>Anon:</td> 
+			    <td><select id='anon' form="form"> +
+			         <option value='True' SELECTED>True</option>
+			         <option value='False'>False</option>
+			    </select> </td>
+			</tr>
+			<tr><td></td><td><input id='myBtn' type='button' value='Save'></td></tr>
 			</table>
 		</div>
     <div id="message">Location saved</div>
@@ -46,9 +59,9 @@
         var type = document.getElementById('type').value;
         var lat = document.getElementById('lat').value;
         var long = document.getElementById('long').value;
-        
+        var anon = document.getElementById('anon').value;
         $.getJSON('/_submitReport',
-            { description: description, type: type, lat: lat, long: long},
+            { description: description, type: type, lat: lat, long: long, anon: anon},
             function(data) {
                 var result = data.result;
                 obj = JSON.parse(result);
