@@ -81,7 +81,7 @@ def report():
 				text = reportText,
 				isEmergency = isEmergency,
 				isAnonymous = isAnonymous,
-				user = user
+				user = user,
 				human_time = str(arrow.get(datetime.now()).humanize())
 			)
 
@@ -134,7 +134,7 @@ def submitReport():
 		text = text,
 		isEmergency = isEmergency,
 		isAnonymous = isAnonymous,
-		user = user
+		user = user,
 		human_time = str(arrow.get(datetime.now()).humanize())
 	)
 
