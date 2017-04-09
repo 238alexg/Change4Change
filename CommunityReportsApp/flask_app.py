@@ -47,14 +47,15 @@ def login():
 		
 		session['token'] = token
 
-		return redirect("/report")
+		#return redirect("/report")
+		return render_template('error.html', error="LOGIN ERROR!")
 	else:
-		return render_template('signIn.html')
+		#return render_template('signIn.html')
+		return render_template('error.html', error="LOGIN ERROR!")
 
 @app.route("/", methods=['GET','POST'])
 @app.route("/report", methods=['GET','POST'])
 def report():
-
 	if (session.get('token')):
 		# If user is directed to the report page
 		if (request.method == 'GET'):
