@@ -103,16 +103,19 @@
     #myBtn {
     display: none;
     position: fixed;
-    bottom: 20px;
-    right: 30px;
+    bottom: 15px;
+    right: 28px;
     z-index: 99;
     border: none;
     outline: none;
-    background-color: #AAAAAA;
-    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    color: lightgrey;
+    text-decoration: bold;
     cursor: pointer;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 8px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
   #myBtn:hover {
     background-color: #555;
@@ -133,7 +136,7 @@
     background-image: -ms-linear-gradient(left, #F0F0F0, #D0D0D0, #F0F0F0);
     background-image: -o-linear-gradient(left, #F0F0F0, #D0D0D0, #F0F0F0); 
   }
-  hr.style14 {
+  hr.style15 {
     border: 0; 
     height: 1px; 
     background-image: -webkit-linear-gradient(left, #474e5d, #D0D0D0, #474e5d);
@@ -176,7 +179,7 @@
 
       <!-- Identify your business so that you can collect the payments. -->
     <input type="hidden" name="business"
-        value="ACCCOOOUNNTNAME">
+        value="ACCCOOOUNNTNAME: We don't got one">
 
     <!-- Specify a Donate button. -->
     <input type="hidden" name="cmd" value="_donations">
@@ -211,7 +214,7 @@
       <p style="text-align: left;">Using EUGChange takes away the incentives driving dense concentrations of panhandlers in lively pedestrian areas such as downtown. It also provides an easy way to support experienced providers of services to people in need, document your real-time giving for tax purposes, and make sure your money will help improve lives.</p>
     </div>
     <div class="col-sm-1"></div>
-    <a href="#myNavbar" id="myBtn" title="Go to top">Top</a>
+    <a href="#myNavbar" id="myBtn" title="Go to top"><b>^</b></a>
     <script>
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function() {scrollFunction()};
@@ -229,8 +232,8 @@
 
 <!-- Third Container -->
 <div id="buys" class="container-fluid bg-2 text-center">
-  <h2 class="margin">What your money buys</h2>
-  <hr class="style14">
+  <h2 class="margin">What Your Money Buys</h2>
+  <hr class="style15">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators" style="bottom: 20px">
