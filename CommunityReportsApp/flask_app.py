@@ -39,14 +39,15 @@ def login():
 	# User is trying to log in to Google
 	elif (request.method == 'POST'):
 		token = request.form.get('token')
+		token_frag = token[0:100]
 
-		user = User.query.filter_by(token = token).first()
+		user = User.query.filter_by(token = token_frag).first()
 
 		if (user == None):
-			newUser = User(token = token)
+			newUser = User(token = token_frag)
 			db.session.add(newUser)
 			db.session.commit()
-			user = User.query.filter_by(token = token).first()
+			user = User.query.filter_by(token = token_frag).first()
 			return render_template('error.html', error = user)
 		elif (user != None):
 			return render_template('error.html', error = user)
