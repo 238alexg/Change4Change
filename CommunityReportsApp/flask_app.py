@@ -149,6 +149,11 @@ def mapFile():
 def signIn():
 	return render_template('signIn.html')
 
+@app.route("/deleteReport")
+def deleteReport():
+	reportID = report.form.get('id')
+	Report.query.filter_by(id=reportID).delete()
+	db.session.commit()
 
 ###############
 ### Models  ###
