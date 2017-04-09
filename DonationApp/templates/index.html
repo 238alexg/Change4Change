@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-  <title>EugChange</title>
+  <title>EUGChange</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -94,20 +94,6 @@
       max-height: 200px;
       display: inline;
     }
-    .row-centered {
-      text-align:center;
-      margin: auto;
-    }
-    .col-centered {
-      display: inline-block;
-      float:none;
-      /* inline-block space fix */
-      margin-right:-4px;
-    }
-    .col-max {
-      /* custom max width */
-      max-width:320px;
-    }
     #myBtn {
     display: none;
     position: fixed;
@@ -116,7 +102,7 @@
     z-index: 99;
     border: none;
     outline: none;
-    background-color: purple;
+    background-color: #AAAAAA;
     color: white;
     cursor: pointer;
     padding: 15px;
@@ -124,6 +110,7 @@
   }
   #myBtn:hover {
     background-color: #555;
+    text-decoration: none;
   }
   </style>
 </head>
@@ -138,7 +125,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">EugChange</a>
+      <a class="navbar-brand" href="#">EUGChange</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -154,7 +141,7 @@
 <!-- First Container -->
 <div class="img-1" id = "donate">
   <div class="container-fluid bg-1 text-center">
-    <h2 style="margin-bottom: 5%; font-size: 6vmin; margin-top: 0px;">A safer way to help the homeless</h2>
+    <h2 style="margin-bottom: 5%; font-size: 6vmin; margin-top: 0px;">A safe way to help the homeless</h2>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 
       <!-- Identify your business so that you can collect the payments. -->
@@ -165,8 +152,8 @@
     <input type="hidden" name="cmd" value="_donations">
 
     <!-- Specify details about the contribution -->
-    <input type="hidden" name="item_name" value="Friends of the Park">
-    <input type="hidden" name="item_number" value="Fall Cleanup Campaign">
+    <input type="hidden" name="item_name" value="Donation to the homeless">
+    <input type="hidden" name="item_number" value="EUGChange">
     <input type="hidden" name="currency_code" value="USD">
 
     <input type="submit" value="Donate" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn-xlarge">
@@ -174,7 +161,7 @@
       src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
 
     </form>
-    <p style="margin-right: 25%; margin-left: 25%; font-size: 2.5vmin; margin-bottom: 5%;">EugChange is a secure alternative to giving to panhandlers.</p>
+    <p style="margin-right: 25%; margin-left: 25%; font-size: 2.5vmin; margin-bottom: 5%;">EUGChange is a secure alternative to giving to panhandlers.</p>
   </div>
 </div>
 
@@ -185,15 +172,15 @@
     <div class="col-sm-1"></div>
     <div class="col-sm-4">
     <h3>What?</h3>
-      <p>Many of us are uncomfortable giving money to panhandlers, but really want to help people in need. EugChange sends your gift to a dedicated fund at St. Vincent de Paul, providing direct service to homeless residents and helping you give wisely on the go.</p>
+      <p>Many of us are uncomfortable giving money to panhandlers, but really want to help people in need. EUGChange sends your gift to a dedicated fund at St. Vincent de Paul, providing direct service to homeless residents and helping you give wisely on the go.</p>
     </div>
     <div class="col-sm-2"></div>
     <div class="col-sm-4">
     <h3>Why?</h3>
-      <p>Using EugChange takes away the incentives driving dense concentrations of panhandlers in lively pedestrian areas such as downtown. It also provides an easy way to support experienced providers of services to people in need, document your real-time giving for tax purposes, and make sure your money will help improve lives.</p>
+      <p>Using EUGChange takes away the incentives driving dense concentrations of panhandlers in lively pedestrian areas such as downtown. It also provides an easy way to support experienced providers of services to people in need, document your real-time giving for tax purposes, and make sure your money will help improve lives.</p>
     </div>
     <div class="col-sm-1"></div>
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <a href="#myNavbar" id="myBtn" title="Go to top">Top</a>
     <script>
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function() {scrollFunction()};
@@ -236,7 +223,7 @@
       <img src="../static/img/house.svg" alt="Pic 3" class="car-img">
     </div>
     <div class="item">
-      <img src="../static/img/teaching.svg" alt="Pic 4" class="car-img">
+      <img src="../static/img/teaching.svg" alt="Pic 4" class="car-img" >
     </div>
   </div>
 
