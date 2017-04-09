@@ -56,7 +56,6 @@
             { description: description, isEmergency: isEmergency, lat: lat, long: long, anonymous: anon},
             function(data) {
                 var result = data.result;
-                obj = JSON.parse(result);
                 if(result == "result: failed"){
                      alert("error");
                 }
