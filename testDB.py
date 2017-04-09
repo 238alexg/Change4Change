@@ -19,8 +19,8 @@ user2 = User(
 
 # Create reports
 report1 = Report(
-	latitude = 44.049228,
-	longitude = 123.092448,
+	latitude = float(44.049228),
+	longitude = float(123.092448),
 	event_dt = datetime.now(),
 	text = "This is my very first report!",
 	isEmergency = False,
@@ -29,8 +29,8 @@ report1 = Report(
 )
 
 report2 = Report(
-	latitude = 44.049238,
-	longitude = 123.092428,
+	latitude = float(44.049238),
+	longitude = float(123.092428),
 	event_dt = datetime.now(),
 	text = "Emergency! Help!",
 	isEmergency = True,
@@ -39,8 +39,8 @@ report2 = Report(
 )
 
 report3 = Report(
-	latitude = 44.049238,
-	longitude = 123.092428,
+	latitude = float(44.049238),
+	longitude = float(123.092428),
 	event_dt = datetime.now(),
 	text = "Positive comment, in same place as emergency",
 	isEmergency = False,
