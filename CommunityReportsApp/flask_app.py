@@ -50,7 +50,8 @@ def login():
 	# User is trying to log in to Google
 	else:
 		token = request.form.get('token')
-		# LATER: save token to session for reports
+		print(token)
+		return render_template('map.html')
 
 
 @app.route("/report", methods=['GET','POST'])
@@ -84,6 +85,8 @@ def report():
 
 		# Render report page with report confirmation
 		return render_template('report.html', success = True)
+
+
 
 @app.route("/mapFile")
 def mapFile():
