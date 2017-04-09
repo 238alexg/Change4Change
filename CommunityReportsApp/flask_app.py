@@ -53,50 +53,24 @@ def login():
 	else:
 		return render_template('signIn.html')
 
-@app.route("/", methods=['GET','POST'])
-@app.route("/report", methods=['GET','POST'])
+@app.route("/", methods=['GET'])
+@app.route("/report", methods=['GET'])
 def report():
+	# Only allow user to come here if they are logged in
 	if (session.get('token')):
 		# If user is directed to the report page
-		if (request.method == 'GET'):
-			return render_template('map.html')
-		# If the user has posted a report form
-		else:
-			latitude = request.form.get('latitude')
-			longitude = request.form.get('longitude')
-			reportText = request.form.get('description')
-			isEmergency = request.form.get('isEmergency')
-			isAnonymous = request.form.get('anonymous')
-
-			user = User.query.filter(User.token == session["token"])
-
-			if (user == None):
-				return render_template('error.html', error="No user in system!")
-
-			# Create new report row
-			newReport = Report(
-				latitude = latitude,
-				longitude = longitude,
-				event_dt = datetime.now(),
-				text = reportText,
-				isEmergency = isEmergency,
-				isAnonymous = isAnonymous,
-				user = user,
-				human_time = str(arrow.get(datetime.now()).humanize())
-			)
-
-			db.session.add(newReport)
-			db.session.commit()
-
-			# Render report page with report confirmation
-			return render_template('map.html', success = True)
+		return render_template('map.html')
 	else:
 		return redirect('/login')
 
+
 @app.route("/testReports", methods=['GET','POST'])
 def testReports():
-	reports = Report.query.all()
-	return render_template('table.html', reports = reports)
+	if (session.get('token')):
+		reports = Report.query.all()
+		return render_template('table.html', reports = reports)
+	else:
+		return redirect('/login')
 
 @app.route("/_getMarkers", methods=['GET','POST'])
 def getMarkers():
@@ -117,7 +91,7 @@ def getMarkers():
 @app.route("/_submitReport")
 def submitReport():
 	text = request.args.get('description', 0, type=str)
-	isEmergency = request.args.get('type',0, type=bool)
+	isEmergency = request.args.get('isEmergency',0, type=bool)
 	isAnonymous = request.args.get('anonymous', 0, type=bool)
 	latitude = request.args.get('lat', 0, type=float)
 	longitude = request.args.get('long', 0, type=float)
@@ -143,13 +117,6 @@ def submitReport():
 
 	return jsonify(result = True)
 
-@app.route("/mapFile")
-def mapFile():
-	return render_template('map.html')
-
-@app.route("/signIn")
-def signIn():
-	return render_template('signIn.html')
 
 @app.route("/deleteReport", methods=['POST'])
 def deleteReport():
