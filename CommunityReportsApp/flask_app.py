@@ -177,9 +177,6 @@ class Report(db.Model):
 	user = db.relationship("User", back_populates="reports")
 	human_time = db.Column(db.String(4096))
 
-	def humanize_time(self):
-        self.event_dt = arrow.get(event_dt).humanize()
-
 # Model for users
 class User(db.Model):
 	__tablename__ = "users"
