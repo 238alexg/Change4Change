@@ -48,10 +48,10 @@
                     </ul>
                 </div>
                 <div class="show-more">
-                    <b href="#">Show more</b>
+                    <a href="#">Show more</b>
                 </div>
                 <script>
-                    $(".show-more b").on("click", function() {
+                    $(".show-more a").on("click", function() {
                         var $this = $(this);
                         var $content = $this.parent().prev("div.content");
                         var linkText = $this.text().toUpperCase();
@@ -87,7 +87,7 @@
 </div>
 
 <script type="text/javascript">
-  $('#thisTable').on('click', 'a', function() {
+  $('#thisTable').on('click', 'button', function() {
   $(this).closest('tr').remove();
 
   //check if no more rows and remove the table
