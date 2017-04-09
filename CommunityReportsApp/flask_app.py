@@ -48,9 +48,6 @@ def login():
 			db.session.add(newUser)
 			db.session.commit()
 			user = User.query.filter_by(token = token_frag).first()
-			return render_template('error.html', error = user)
-		elif (user != None):
-			return render_template('error.html', error = user)
 
 		session['token'] = user.token
 
