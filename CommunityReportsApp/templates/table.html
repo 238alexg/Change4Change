@@ -48,10 +48,10 @@
                     </ul>
                 </div>
                 <div class="show-more">
-                    <a href="#">Show more</a>
+                    <b href="#">Show more</b>
                 </div>
                 <script>
-                    $(".show-more a").on("click", function() {
+                    $(".show-more b").on("click", function() {
                         var $this = $(this);
                         var $content = $this.parent().prev("div.content");
                         var linkText = $this.text().toUpperCase();
