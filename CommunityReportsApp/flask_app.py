@@ -1,6 +1,6 @@
 # communityReportsApp.py
 
-from flask import Flask, request, jsonify, session, render_template
+from flask import Flask, request, redirect, jsonify, session, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 from datetime import datetime
@@ -55,7 +55,7 @@ def login():
 @app.route("/report", methods=['GET','POST'])
 def report():
 
-	if (session.get('token') != None):
+	if (session.get('token')):
 		# If user is directed to the report page
 		if (request.method == 'GET'):
 			return render_template('map.html')
