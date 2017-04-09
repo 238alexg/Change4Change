@@ -87,9 +87,20 @@ function createWindow(e) {
 }
 
 function addMarkers() {
+
+      var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var icons = {
+          event: {
+            icon: iconBase + 'parking_lot_maps.png'
+          },
+          crime: {
+            icon: iconBase + 'info-i_maps.png'
+          }
+        };
+
     var markersOld = [
-        [ 44.052, -123.086, "a test"],
-        [ 44.032, -123.087, "a test2"]
+        [ 44.052, -123.086, "a test","event"],
+        [ 44.032, -123.087, "a test2","crime"]
     ];
     /*var locations = [];
     for(i = 0; i < markersOld.length; i++)
@@ -115,6 +126,7 @@ function addMarkers() {
         marker = new google.maps.Marker({
             position: position,
             map: map,
+            icon: icons[markersOld[i][3]].icon
         });
         
         // Allow each marker to have an info window    

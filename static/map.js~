@@ -87,11 +87,22 @@ function createWindow(e) {
 }
 
 function addMarkers() {
+
+      var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var icons = {
+          event: {
+            icon: iconBase + 'parking_lot_maps.png'
+          },
+          crime: {
+            icon: iconBase + 'info-i_maps.png'
+          }
+        };
+
     var markersOld = [
-        [ 44.052, -123.086, "a test"],
-        [ 44.032, -123.087, "a test2"]
+        [ 44.052, -123.086, "a test","event"],
+        [ 44.032, -123.087, "a test2","crime"]
     ];
-    var locations = [];
+    /*var locations = [];
     for(i = 0; i < markersOld.length; i++)
     {
         var aLoc = {lat: markersOld[i][0], lng: markersOld[i][1]};
@@ -102,12 +113,12 @@ function addMarkers() {
         return new google.maps.Marker({
             position: location
         });
-    });
+    });*/
 
     // Add a marker clusterer to manage the markers.
-    var markerCluster = new MarkerClusterer(map, markers,
+    /*var markerCluster = new MarkerClusterer(map, markers,
         {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-    
+    */
      var infoWindow = new google.maps.InfoWindow(), marker, i;
      for( i = 0; i < markersOld.length; i++ ) {
         var position = new google.maps.LatLng(markersOld[i][0], markersOld[i][1]);
@@ -115,6 +126,7 @@ function addMarkers() {
         marker = new google.maps.Marker({
             position: position,
             map: map,
+            icon: icons[markersOld[i][3]]
         });
         
         // Allow each marker to have an info window    
