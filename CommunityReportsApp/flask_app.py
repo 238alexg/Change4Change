@@ -1,11 +1,9 @@
 # communityReportsApp.py
 
-import flask
-from flask import Flask, request, url_for, jsonify, render_template
+from flask import Flask, request, session, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 from datetime import datetime
-import json
 import logging
 import CONFIG
 import uuid
@@ -13,7 +11,7 @@ import uuid
 ###############
 ### Globals ###
 ###############
-app = flask.Flask(__name__)
+app = Flask(__name__)
 app.secret_key = str(uuid.uuid4())
 app.debug = CONFIG.DEBUG
 app.logger.setLevel(logging.DEBUG)
@@ -92,14 +90,15 @@ def report():
 def testReports():
 	reports = Report.query.all()
 	return render_template('table.html', reports = reports)
+	#return render_template('error.html', error = reports)
 
 @app.route("/mapFile")
 def mapFile():
-	return flask.render_template('map.html')
+	return render_template('map.html')
 
 @app.route("/signIn")
 def signIn():
-	return flask.render_template('signIn.html')
+	return render_template('signIn.html')
 
 
 ###############
@@ -124,8 +123,7 @@ class Report(db.Model):
 class User(db.Model):
 	__tablename__ = "users"
 	id = db.Column(db.Integer, primary_key = True)
-
-	token = db.Column(db.String(512), unique = True)
+	token = db.Column(db.String(512))
 	reports = db.relationship("Report", back_populates="user")
 
 

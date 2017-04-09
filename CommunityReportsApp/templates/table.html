@@ -27,17 +27,19 @@
     <tbody>
     {% for item in reports %}
       <tr>
-        {% for item in Rx eport %}
         <td>{{ item.event_dt }}</td>
-        <td>{{ item.latitude }}{{ item.longtitude }}</td>
-        <td>{{ item.isEmergency}}</td>
+        <td>{{ item.latitude }}{{ item.longitude }}</td>
+        {% if item.isEmergency %}
+        <td class="danger">{{ item.isEmergency}}</td>
+        {% else %}
+        <td class="success">{{ item.isEmergency}}</td>
+        { % endif %}
         <td>{{ item.text }}</td>
         {% if item.isAnonymous %}
-        <td class="danger">{{ item.isAnonymous }}</td>  
+        <td class="warning">{{ item.isAnonymous }}</td>  
         {% else %}
         <td>{{ item.isAnonymous }}</td>
         {% endif %}
-        {% endfor %}
       </tr>
     {% endfor %}
     </tbody>
