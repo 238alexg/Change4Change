@@ -1,6 +1,6 @@
 # communityReportsApp.py
 
-from flask import Flask, request, session, render_template
+from flask import Flask, request, jsonify, session, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 from datetime import datetime
@@ -89,8 +89,23 @@ def report():
 @app.route("/testReports", methods=['GET','POST'])
 def testReports():
 	reports = Report.query.all()
-	#return render_template('table.html', reports = reports)
-	return render_template('error.html', error = reports)
+	return render_template('table.html', reports = reports)
+
+@app.route("/_getMarkers", methods=['GET','POST'])
+def getMarkers():
+	reports = Report.query.all()
+	data = []
+
+	for report in reports:
+		epoch = report.event_dt.strftime('%s')
+
+		if (report.isEmergency):
+			data.append([report.latitude, report.longitude, report.text, "Crime", epoch])
+		else:
+			data.append([report.latitude, report.longitude, report.text, "Event", epoch])
+
+	return jsonify(result = data)
+
 
 @app.route("/mapFile")
 def mapFile():
