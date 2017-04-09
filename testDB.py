@@ -24,7 +24,7 @@ report1 = Report(
 	event_dt = datetime.now(),
 	text = "This is my very first report!",
 	isEmergency = False,
-	isAnonymous = isAnonymous,
+	isAnonymous = True,
 	user = user1
 )
 
@@ -34,7 +34,7 @@ report2 = Report(
 	event_dt = datetime.now(),
 	text = "Emergency! Help!",
 	isEmergency = True,
-	isAnonymous = isAnonymous,
+	isAnonymous = False,
 	user = user1
 )
 
@@ -44,7 +44,7 @@ report3 = Report(
 	event_dt = datetime.now(),
 	text = "Positive comment, in same place as emergency",
 	isEmergency = False,
-	isAnonymous = isAnonymous,
+	isAnonymous = False,
 	user = user2
 )
 

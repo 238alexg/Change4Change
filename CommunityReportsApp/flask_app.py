@@ -117,7 +117,7 @@ class Report(db.Model):
 	text = db.Column(db.String(4096))
 	isEmergency = db.Column(db.Boolean)
 	isAnonymous = db.Column(db.Boolean)
-	user = db.Column(db.Integer, db.ForeignKey('User.id'))
+	user = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 # Model for users
 class User(db.Model):
