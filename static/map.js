@@ -47,7 +47,7 @@ function createWindow(e) {
 
 function addMarkers(markersOld) {
       console.log(markersOld);
-      var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+      /*var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
         var icons = {
           Event: {
             icon: iconBase + 'parking_lot_maps.png'
@@ -55,7 +55,7 @@ function addMarkers(markersOld) {
           Crime: {
             icon: iconBase + 'info-i_maps.png'
           }
-        };
+        };*/
 
     /*var markersOld = [
         [ 44.052, -123.086, "This is a test event","event",1591709677],
@@ -84,16 +84,23 @@ function addMarkers(markersOld) {
         var theTime = new Date();
         var theResult = theTime.getUnixTime()-markersOld[i][4];
         console.log(theTime.getUnixTime()-markersOld[i][4]);
-        if(theResult<300){
+        if(theResult<300){  
             animation = google.maps.Animation.BOUNCE;
         }
         else{
             animation = null;
         }
+        var aIcon;
+        if(markersOld[i][3]){
+            aIcon = 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png';
+        }
+        else{
+            aIcon = 'https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png';
+        }
         marker = new google.maps.Marker({
             position: position,
             map: map,
-            icon: icons[markersOld[i][3]].icon,
+            icon: aIcon,//icons[markersOld[i][3]].icon,
             animation: animation
         });
 
