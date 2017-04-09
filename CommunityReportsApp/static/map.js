@@ -54,7 +54,7 @@ function initMap(){
   });
   var trafficLayer = new google.maps.TrafficLayer();
   trafficLayer.setMap(map);
-  
+
   marker = new google.maps.Marker({
       map: map
     });
@@ -67,7 +67,7 @@ function initMap(){
 
 function createWindow(e) {
     marker.setPosition(e.latLng);
-    
+
     //set position data
     var latitude = e.latLng.lat();
     var longitude = e.latLng.lng();
@@ -76,7 +76,7 @@ function createWindow(e) {
     var long = document.getElementById("long");
     long.setAttribute("value", longitude);
     console.log("Latitude: " + latitude +'\n' +"Longitude: " + longitude);
-    
+
     infowindow = new google.maps.InfoWindow;
     var formData = document.getElementById('form');
     infowindow.setContent(formData);
@@ -89,13 +89,13 @@ function createWindow(e) {
 }
 
 function addMarkers(markersOld) {
-
+      console.log(markersOld);
       var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
         var icons = {
-          event: {
+          Event: {
             icon: iconBase + 'parking_lot_maps.png'
           },
-          crime: {
+          Crime: {
             icon: iconBase + 'info-i_maps.png'
           }
         };
@@ -139,8 +139,8 @@ function addMarkers(markersOld) {
             icon: icons[markersOld[i][3]].icon,
             animation: animation
         });
-        
-        // Allow each marker to have an info window    
+
+        // Allow each marker to have an info window
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
                 infoWindow.setContent("<b>Type: </b><i>" + markersOld[i][3] + "</i><br>"
@@ -165,8 +165,9 @@ $(document).ready(function(){
         alert('Failed to fetch');
         return;
       }
-      addMarkers(result.result);
       console.log(result);
+      addMarkers(result.result);
+
       //alert('Did not find any useful flights');
     }
   });
