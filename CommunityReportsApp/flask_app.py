@@ -149,7 +149,7 @@ def mapFile():
 def signIn():
 	return render_template('signIn.html')
 
-@app.route("/deleteReport")
+@app.route("/deleteReport", methods=['POST'])
 def deleteReport():
 	reportID = report.form.get('id')
 	Report.query.filter_by(id=reportID).delete()
