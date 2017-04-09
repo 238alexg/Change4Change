@@ -29,6 +29,7 @@
     <tr class="emergency">
     {% else %}
     <tr>
+    {% endif %}    
         <td>{{ item.event_dt }}</td>
         {% if (item.isEmergency) %}
             <td>EMERGENCY!</td>
