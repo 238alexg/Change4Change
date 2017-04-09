@@ -39,15 +39,17 @@ def login():
 	# User is trying to log in to Google
 	elif (request.method == 'POST'):
 		token = request.form.get('token')
+		token_frag = token[0:100]
 
-		user = User.query.filter(User.token == token)
+		user = User.query.filter_by(token = token_frag).first()
+
 		if (user == None):
-			newUser = User(token = token)
+			newUser = User(token = token_frag)
 			db.session.add(newUser)
 			db.session.commit()
-			user = User.query.filter(User.token == token)
+			user = User.query.filter_by(token = token_frag).first()
 
-		session['token'] = token
+		session['token'] = user.token
 
 		return redirect("/report")
 	else:
@@ -67,7 +69,7 @@ def report():
 @app.route("/testReports", methods=['GET','POST'])
 def testReports():
 	if (session.get('token')):
-		user = User.query.filter_by(id=session['token']).first()
+		user = User.query.filter_by(token=session['token']).first()
 		reports = Report.query.filter_by(user=user).all()
 		return render_template('table.html', reports = reports)
 	else:
@@ -90,34 +92,31 @@ def getMarkers():
 
 @app.route("/_submitReport")
 def submitReport():
-	return jsonify(result = "Hello")
+	text = request.args.get('description', 0, type=str)
+	isEmergency = request.args.get('isEmergency',0, type=bool)
+	isAnonymous = request.args.get('anonymous', 0, type=bool)
+	latitude = request.args.get('lat', 0, type=float)
+	longitude = request.args.get('long', 0, type=float)
 
-	# text = request.args.get('description', 0, type=str)
-	# isEmergency = request.args.get('isEmergency',0, type=bool)
-	# isAnonymous = request.args.get('anonymous', 0, type=bool)
-	# latitude = request.args.get('lat', 0, type=float)
-	# longitude = request.args.get('long', 0, type=float)
+	user = User.query.filter(User.token == session["token"]).first()
 
-	# user = User.query.filter(User.token == session["token"])
+	if (user == None):
+		return jsonify(result = "NO USER")
 
-	# if (user == None):
-	# 	return render_template('error.html', error="No user in system!")
+	newReport = Report(
+		latitude = latitude,
+		longitude = longitude,
+		event_dt = datetime.now(),
+		text = text,
+		isEmergency = isEmergency,
+		isAnonymous = isAnonymous,
+		user = user
+	)
 
-	# newReport = Report(
-	# 	latitude = latitude,
-	# 	longitude = longitude,
-	# 	event_dt = datetime.now(),
-	# 	text = text,
-	# 	isEmergency = isEmergency,
-	# 	isAnonymous = isAnonymous,
-	# 	user = user,
-	# 	human_time = str(arrow.get(datetime.now()).humanize())
-	# )
+	db.session.add(newReport)
+	db.session.commit()
 
-	# db.session.add(newReport)
-	# db.session.commit()
-
-	# return jsonify(result = True)
+	return jsonify(result = "Finished")
 
 
 @app.route("/deleteReport", methods=['POST'])
@@ -144,7 +143,6 @@ class Report(db.Model):
 	isAnonymous = db.Column(db.Boolean)
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 	user = db.relationship("User", back_populates="reports")
-	human_time = db.Column(db.String(4096))
 
 # Model for users
 class User(db.Model):
