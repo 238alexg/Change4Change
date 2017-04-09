@@ -91,8 +91,7 @@ def report():
 @app.route("/testReports", methods=['GET','POST'])
 def testReports():
 	reports = Report.query.all()
-	return render_template('error.html', reports = reports)
-	#return render_template('table.html', reports = reports)
+	return render_template('table.html', reports = reports)
 
 @app.route("/mapFile")
 def mapFile():

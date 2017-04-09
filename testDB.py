@@ -65,7 +65,3 @@ db.session.add(report2)
 db.session.add(report3)
 
 db.session.commit()
-
-reports = Reports.query.all()
-for report in reports:
-	print(report)
