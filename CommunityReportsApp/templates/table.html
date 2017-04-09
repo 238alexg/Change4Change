@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script langauge="JavaScript" src="../static/table.js"></script>
 </head>
 <body>
 
@@ -28,7 +27,7 @@
     <tbody>
     {% for item in reports %}
         {% if (item.isEmergency) %}
-        <tr class="emergency">
+        <tr style= "background-color: rgba(255, 0, 0, 0.7)">
         {% else %}
         <tr>
         {% endif %}
@@ -40,33 +39,17 @@
             {% endif %}
             <td>
                 <div class="content hideContent"> {{ item.text }}
-                    <p>Some more text</p>
+                    <p>More details</p>
                     <ul>
-                        <li>Some more text</li>
-                        <li>Some more text</li>
-                        <li>Some more text</li>
+                        <li>This is text</li>
+                        <li>This could be more text</li>
+                        <li>This is text</li>
                     </ul>
                 </div>
                 <div class="show-more">
                     <a href="#">Show more</b>
                 </div>
-                <script>
-                    $(".show-more a").on("click", function() {
-                        var $this = $(this);
-                        var $content = $this.parent().prev("div.content");
-                        var linkText = $this.text().toUpperCase();
 
-                        if(linkText === "SHOW MORE"){
-                            linkText = "Show less";
-                            $content.switchClass("hideContent", "showContent", 100);
-                        } else {
-                            linkText = "Show more";
-                            $content.switchClass("showContent", "hideContent", 100);
-                        };
-
-                        $this.text(linkText);
-                    });
-                </script>
 
             </td>
 
@@ -75,7 +58,10 @@
             {% else %}
                 <td>PUBLIC</td>
             {% endif %}
-            <td> <button type="button" class="btn btn-danger btn-circle delete-row" href="#" ><i class="glyphicon glyphicon-remove"> </td>
+            <td> <form type="hidden" action = "/deleteReport" method="POST">
+                <input type="hidden" value={{item.id}}></input>
+                <input type="submit" value="X" class="btn btn-danger btn-circle delete-row" href="#" ></input>
+                </form> </td>
         </tr>
 
 
@@ -95,6 +81,22 @@
     $('#thisTable').remove();
   }
 });
+    $(".show-more a").on("click", function() {
+        console.log("TEST");
+        var $this = $(this);
+        var $content = $this.parent().prev("div.content");
+        var linkText = $this.text().toUpperCase();
+
+        if(linkText === "SHOW MORE"){
+            linkText = "Show less";
+            $content.addClass("showContent").removeClass("hideContent");
+        } else {
+            linkText = "Show more";
+            $content.addClass("hideContent").removeClass("showContent");
+        };
+
+        $this.text(linkText);
+    });
 </script>
 
 </body>
