@@ -1,6 +1,6 @@
 # communityReportsApp.py
 
-from flask import Flask, request, jsonify, session, render_template
+from flask import Flask, request, redirect, jsonify, session, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 from datetime import datetime
@@ -34,8 +34,10 @@ db = SQLAlchemy(app)
 
 @app.route("/login", methods=['GET','POST'])
 def login():
+	if (session.get('token')):
+		return redirect("/report")
 	# User is trying to log in to Google
-	if (request.method == 'POST'):
+	elif (request.method == 'POST'):
 		token = request.form.get('token')
 
 		user = User.query.filter(User.token == token)
@@ -44,18 +46,17 @@ def login():
 			db.session.add(newUser)
 			db.session.commit()
 			user = User.query.filter(User.token == token)
-		
+
 		session['token'] = token
 
-		return render_template('error.html', error = "You are logged in!")
-
-	return render_template('signIn.html')
+		return redirect("/report")
+	else:
+		return render_template('signIn.html')
 
 @app.route("/", methods=['GET','POST'])
 @app.route("/report", methods=['GET','POST'])
 def report():
-
-	if (session.get('token') != None):
+	if (session.get('token')):
 		# If user is directed to the report page
 		if (request.method == 'GET'):
 			return render_template('map.html')
@@ -148,6 +149,12 @@ def mapFile():
 def signIn():
 	return render_template('signIn.html')
 
+@app.route("/deleteReport", methods=['POST'])
+def deleteReport():
+	reportID = request.form.get('id')
+	Report.query.filter_by(id=reportID).delete()
+	db.session.commit()
+	return redirect('/testReports')
 
 ###############
 ### Models  ###

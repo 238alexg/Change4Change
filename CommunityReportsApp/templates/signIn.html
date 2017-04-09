@@ -144,13 +144,19 @@
     	background-image: -ms-linear-gradient(left, #474e5d, #D0D0D0, #474e5d);
     	background-image: -o-linear-gradient(left, #474e5d, #D0D0D0, #474e5d); 
   	}
+  	.g-signin2 {
+  		width: 100%;
+  	}
+  	.g-signin2 > div {
+  		margin: 0 auto;
+  	}
   </style>
 	</head>
 	<body>
 	<div class='img-1'>
 	  <div class="container-fluid bg-1 text-center">
-	    <h2 style="margin-bottom: 5%; font-size: 6vmin; margin-top: 0px;">Sign in</h2>
-	    <form id="loginForm" method="post" action="/">
+	    <h2 style="margin-bottom: 5%; font-size: 6vmin; margin-top: 0px; color: #E4F8FF;">Look!</h2>
+	    <form id="loginForm" method="post" action="/login">
         	<div class="g-signin2" data-onsuccess="onSignIn"></div>
         	<meta name="google-signin-client_id" content="752679559060-aau2hf5upuvgnb9k7rd5h6huip2rdcbd.apps.googleusercontent.com">
 			<input type="hidden" name="token" id="token" value="">

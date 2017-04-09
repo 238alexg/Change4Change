@@ -15,55 +15,55 @@
 
 	<style>
 	body {
-	font: 20px Montserrat, sans-serif;
-	line-height: 1.8;
-	color: #f5f6f7;
+		font: 20px Montserrat, sans-serif;
+		line-height: 1.8;
+		color: #f5f6f7;
 	}
-	html, body {height: 100%; margin: 0px; padding-right:1px; padding-left:1px}
+	html, body {
+		height: 100%; 
+		margin: 0px; 
+		padding-right:1px; 
+		padding-left:1px;
+		position: fixed; 	
+    	width: 100%;
+	}
 	p {font-size: 16px;}
-	.margin {margin-bottom: 45px;}
-	.bg-1 {
-	background-color: rgba(81, 145, 205, 0.45); /* Blue */
-	color: #ffffff;
-	height: 100%;
-	}
-	.bg-2 {
-	background-color: #474e5d; /* Dark Blue */
-	color: #ffffff;
-	}
-	.bg-3 {
-	background-color: #ffffff; /* White */
-	color: #555555;
-	}
-	.bg-4 {
-	background-color: #2f2f2f; /* Black Gray */
-	color: #fff;
+		.margin {margin-bottom: 45px;}
+		.bg-1 {
+		background-color: rgba(81, 145, 205, 0.45); /* Blue */
+		color: #ffffff;
+		height: 100%;
 	}
 	.container-fluid {
-	padding-top: 70px;
-	padding-bottom: 70px;
+		padding-top: 70px;
+		padding-bottom: 70px;
 	}
 	.navbar {
-	padding-top: 0px;
-	padding-bottom: 0px;
-	border: 0;
-	border-radius: 0;
-	margin-bottom: 0;
-	font-size: 12px;
-	letter-spacing: 3px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		border: 0;
+		border-radius: 0;
+		margin-bottom: 0;
+		font-size: 12px;
+		letter-spacing: 3px;
+		background-color: #E4F8FF;
+	}
+	#dropDown ul li a{
+		color: #004460;
 	}
 	.navbar-nav  li a:hover {
-	color: #1abc9c !important;
+		color: #1abc9c !important;
 	}
 	#map {
-	height: 50%;
-	padding-top: 8px;
-	padding-bottom: 8px;
-	border: 0;
-	border-radius: 0;
-	margin-bottom: 0;
-	font-size: 12px;
-	letter-spacing: 3px;
+		height: 93%;
+		padding-top: 8px;
+		padding-bottom: 8px;
+		border: 0;
+		border-radius: 0;
+		margin-bottom: 0;
+		font-size: 12px;
+		letter-spacing: 3px;
+		scroll-behavior: 
 	}
 	</style>
 	<!-- Navbar -->
@@ -75,13 +75,13 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#">LOOK!</a>
+	      <a class="navbar-brand" >LOOK!</a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
-	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="#myReport">My Report</a></li>
+	      <ul class="nav navbar-nav navbar-right" id="dropDown">
+	        <li><a href="../../templates/table.html">My Report</a></li>
 	        <li><a href="#submitReport">Submit</a></li>
-	        <li><a href="#local">Local</a></li>
+	        <li><a href="#">Local</a></li>
 	      </ul>
 	    </div>
 	  </div>
@@ -98,10 +98,10 @@
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYk3h5SFMD7YThRHX50g8uZYmPmoqLjnU&callback=initMap"
 		async defer></script>
 
-<<<<<<< HEAD
+
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
 		<meta name="google-signin-client_id" content="494678703644-ufofnmrub4m7dm8cn1lo394huo4sqb79.apps.googleusercontent.com">
-=======
+
 		<div id="form">
 			<table>
 				<input type="hidden" id="lat">
@@ -127,14 +127,13 @@
 			<tr><td></td><td><input id='myBtn' type='button' value='Save'></td></tr>
 			</table>
 		</div>
+		
 		<div id="message">Location saved</div>
 
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-client_id" content="494678703644-ufofnmrub4m7dm8cn1lo394huo4sqb79.apps.googleusercontent.com">
->>>>>>> 6f0394ebe3f16c87b32ab28002df2358a7c743cd
 
 		<script type="text/javascript">
-
 		    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 		    $(document).ready(function(){
 		      $("#myBtn").click(function(){

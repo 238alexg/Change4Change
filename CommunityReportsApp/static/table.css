@@ -1,3 +1,15 @@
-tr.emergency {
-    background-color: rgb(255,0,0)
+.hideContent {
+    overflow: hidden;
+    line-height: 1em;
+    height: 2em;
+}
+
+.showContent {
+    line-height: 1em;
+    height: auto;
+}
+
+.show-more {
+    padding: 10px 0;
+    text-align: center;
 }
