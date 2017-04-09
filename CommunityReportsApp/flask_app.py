@@ -7,7 +7,6 @@ from datetime import datetime
 import logging
 import CONFIG
 import uuid
-import arrow
 
 ###############
 ### Globals ###
@@ -109,8 +108,7 @@ def submitReport():
 		text = text,
 		isEmergency = isEmergency,
 		isAnonymous = isAnonymous,
-		user = user,
-		human_time = str(arrow.get(datetime.now()).humanize())
+		user = user
 	)
 
 	db.session.add(newReport)
@@ -143,7 +141,6 @@ class Report(db.Model):
 	isAnonymous = db.Column(db.Boolean)
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 	user = db.relationship("User", back_populates="reports")
-	human_time = db.Column(db.String(4096))
 
 # Model for users
 class User(db.Model):
