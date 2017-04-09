@@ -4,6 +4,7 @@
   <title>Reports</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="static/table.css" media="screen"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -17,7 +18,6 @@
     <thead>
       <tr>
         <th>DateTime</th>
-        <th>Location</th>
         <th>Incident</th>
         <th>Description</th>
         <th>Anonymous</th>
@@ -26,25 +26,50 @@
     </thead>
     <tbody>
     {% for item in reports %}
-      <tr>
-        <td>{{ item.event_dt }}</td>
-        <td>{{ item.latitude }}{{ item.longitude }}</td>
+
+    <button class="rowExpand">
         {% if (item.isEmergency) %}
-            <td style="color:red;">EMERGENCY!</td>
+        <tr class="emergency">
         {% else %}
-            <td>idgaf</td>
+        <tr>
         {% endif %}
-        <td>{{ item.text }}</td>
-        {% if (item.isAnonymous) %}
-            <td class="success">ANONYMOUS</td>
-        {% else %}
-            <td class="warning">PUBLIC</td>
-        {% endif %}
-      </tr>
+            <td>{{ item.event_dt }}</td>
+            {% if (item.isEmergency) %}
+                <td>EMERGENCY!</td>
+            {% else %}
+                <td>idgaf</td>
+            {% endif %}
+            <td>{{ item.text }}</td>
+            {% if (item.isAnonymous) %}
+                <td>ANONYMOUS</td>
+            {% else %}
+                <td>PUBLIC</td>
+            {% endif %}
+        </tr>
+    </button>
     {% endfor %}
+
+
     </tbody>
   </table>
 </div>
+
+<script>
+var acc = document.getElementsByClassName("rowExpand");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    }
+}
+</script>
 
 </body>
 </html>
